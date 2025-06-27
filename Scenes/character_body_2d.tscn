@@ -1,0 +1,43 @@
+[gd_scene load_steps=4 format=3 uid="uid://cj3vm8nx1o1jj"]
+
+[ext_resource type="Script" uid="uid://daophsysguk0e" path="res://Scripts/character_body_2d.gd" id="1_88kja"]
+[ext_resource type="Texture2D" uid="uid://c6uir1mqtm15g" path="res://icon.svg" id="2_it8n0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gbyq6"]
+size = Vector2(114, 125)
+
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("jumptimer", "dashtimer", "shieldtimer")]
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("1_88kja")
+health = 5
+gravity = 4.5
+basejumpheight = 250.0
+walkspeed = 500.0
+runspeed = 800.0
+jumptimer = NodePath("JumpTimer")
+dashtimer = NodePath("DashTimer")
+shieldtimer = NodePath("ShieldTimer")
+bulletlimit = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_it8n0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_gbyq6")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, -32)
+zoom = Vector2(2, 2)
+
+[node name="JumpTimer" type="Timer" parent="."]
+wait_time = 0.7
+one_shot = true
+
+[node name="DashTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="ShieldTimer" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true

@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://bwf3r4b57hx1q"]
+
+[ext_resource type="Texture2D" uid="uid://c6uir1mqtm15g" path="res://icon.svg" id="1_k7gg3"]
+[ext_resource type="Script" uid="uid://mxu8kkv2p6hn" path="res://Scripts/Entities/Bullets/BaseBullet.gd" id="2_xmi0t"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k7gg3"]
+size = Vector2(50, 50)
+
+[node name="Bullet" type="CharacterBody2D" node_paths=PackedStringArray("SpriteNode", "bullettimer")]
+script = ExtResource("2_xmi0t")
+SpriteNode = NodePath("BulletSprite")
+bullettimer = NodePath("Timer")
+
+[node name="BulletSprite" type="Sprite2D" parent="."]
+position = Vector2(1.90735e-06, 0.5)
+scale = Vector2(0.40625, 0.414062)
+texture = ExtResource("1_k7gg3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_k7gg3")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true

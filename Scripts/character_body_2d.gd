@@ -1,0 +1,347 @@
+extends CharacterBody2D
+class_name Player
+
+
+enum PlayerState {Idle,Walk,Fall,Jump,Dead}
+
+@export var health : int
+
+var state : PlayerState
+
+@export var gravity : float
+
+@export var basejumpheight : float
+#@export var jumppower : float
+
+var inputvector : Vector2
+
+@export var walkspeed : float
+@export var runspeed : float
+
+@export var jumptimer : Timer
+
+@export var dashtimer : Timer
+
+@export var shieldtimer : Timer
+
+var facingdir
+
+var oldjumpheight 
+
+var bulletscene = preload("res://Scenes/Entities/Projectiles/PlayerBullet.tscn")
+
+@export var bulletlimit : int
+
+var bulletcount = 0
+
+var shieldactive : bool
+
+
+func _ready() -> void:
+	
+	state = PlayerState.Idle
+	
+	print("Player Start !")
+	
+	oldjumpheight = basejumpheight
+	
+	facingdir = 1
+	
+	GameAutoload.DecreasePlyrBulletCounter.connect(decrementbulletcounter)
+	
+	
+	pass
+
+
+func input():
+	
+	
+	inputvector.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
+	
+	if inputvector.x != 0:
+		
+		facingdir = inputvector.x
+	
+	#print(facingdir)
+	
+	if Input.is_action_just_pressed("Shoot"):
+		shootbullet()
+		pass
+	
+	
+	if state == PlayerState.Idle:
+		if Input.is_action_just_pressed("Shield"):
+			
+			shieldtimer.start()
+			
+			shieldactive = true
+			
+			pass
+		elif !Input.is_action_just_pressed("Shield") or shieldtimer.is_stopped():
+			
+			shieldactive = false
+			
+			pass
+		
+	
+	
+	dash()
+	
+	
+	
+	
+	
+	pass
+
+
+func PlyrStateManager():
+	
+	match state:
+		PlayerState.Idle:
+			
+			
+			if Input.is_action_just_pressed("Jump"):
+				
+				jumptimer.start()
+				#state = PlayerState.Jump
+				plyrjump()
+			
+			
+			#print("Idle")
+			
+			if inputvector.x != 0 or Input.is_action_pressed("Dash"):
+				state = PlayerState.Walk
+			else:
+				pass
+			
+			if is_on_floor():
+				velocity = Vector2.ZERO
+				pass
+			else:
+				
+				state = PlayerState.Fall
+				
+				pass
+			
+			pass
+			
+		PlayerState.Fall:
+			
+			#print("Fall")
+			velocity.x = inputvector.x * walkspeed
+			if is_on_floor():
+				
+				state = PlayerState.Idle
+			else:
+				velocity.y += gravity * 10
+				
+
+			
+			pass
+		
+		PlayerState.Jump:
+			
+			velocity.x = inputvector.x * walkspeed
+			
+			
+			#print("Jump")
+			
+			## if the jump button is not pressed or the timer is stopped, then the player will fall
+			## but if it is pressed or the timer is stil going, keep applying the force
+			
+			
+			if !Input.is_action_pressed("Jump") or jumptimer.is_stopped():
+				
+				
+				jumptimer.stop()
+				state = PlayerState.Fall
+			
+			elif Input.is_action_pressed("Jump") or !jumptimer.is_stopped():
+				#velocity.y -= jumppower * 10
+				
+				basejumpheight-= 30
+				
+				
+				velocity.y -= basejumpheight
+				
+				print(basejumpheight)
+			
+			
+			
+			
+			if basejumpheight <= -20:
+				
+				basejumpheight = -20
+				pass
+	
+	
+	
+			
+			
+			
+			
+				
+			#if is_on_floor():
+				#sttae = PlayerState.
+			
+			pass
+		
+		PlayerState.Walk:
+			
+			
+			if Input.is_action_just_pressed("Jump"):
+				#state = PlayerState.Jump
+				
+				jumptimer.start()
+				plyrjump()
+				
+			
+			
+			
+			velocity.x = inputvector.x * walkspeed
+			
+			if inputvector.x == 0 or dashtimer.is_stopped():
+				state = PlayerState.Idle
+			
+			if !is_on_floor():
+				
+				state = PlayerState.Fall
+			
+			
+			pass
+		
+		PlayerState.Dead:
+			
+			
+			velocity = Vector2.ZERO
+			
+	
+	
+	pass
+
+
+func dash():
+	
+	#if !dashtimer.is_stopped():
+		##print(dashtimer.time_left)
+	
+	if state != PlayerState.Jump or state != PlayerState.Fall:
+			
+			if Input.is_action_just_pressed("Dash"):
+				
+				if dashtimer.is_stopped():
+					dashtimer.start()
+					walkspeed = runspeed
+				
+				
+				
+				#velocity.x = facingdir * walkspeed
+				
+				#print("dash !")
+			
+			if !Input.is_action_pressed("Dash") or dashtimer.is_stopped():
+				
+				walkspeed = runspeed/2
+				
+				if !dashtimer.is_stopped():
+					
+					dashtimer.stop()
+				
+				
+				
+				pass
+			
+			
+			pass
+
+
+
+
+func plyrjump():
+	
+	if state != PlayerState.Jump: ##basically the enter function in this kinda FSM system
+		
+		basejumpheight = oldjumpheight
+		
+		state = PlayerState.Jump
+		
+		velocity.y = basejumpheight
+		
+	
+	
+	#
+	#velocity.y -= basejumpheight
+	#
+	#basejumpheight-= 0.25
+	#
+	#
+	#if velocity.y <= 0.7:
+		#
+		#velocity.y = 0.7
+		#pass
+	#
+	#
+	
+	
+	
+	
+	
+	pass
+
+func shootbullet():
+	
+	if bulletcount < bulletlimit: 
+		
+		var bulletinstance = bulletscene.instantiate()
+		
+		var bulletpos
+		
+		var bulletspeed
+		
+		bulletpos = Vector2(self.global_position.x + ( 100 * facingdir ), self.global_position.y)
+		
+		bulletinstance.position = bulletpos
+		
+		bulletinstance.set_speed(20 * facingdir )
+		
+		self.get_parent().add_child(bulletinstance)
+		
+		bulletcount += 1 
+		
+	
+	
+	pass
+
+func decrementbulletcounter():
+	
+	bulletcount -= 1
+
+func take_damage(damage : int):
+	
+	if !shieldactive:
+		health -= damage
+	else:
+		pass
+	
+	
+	
+	pass
+
+
+func _physics_process(delta: float):
+	
+	#print(" State :" + var_to_str(state))
+	if state != PlayerState.Dead :
+		input()
+	PlyrStateManager()
+	
+	clamp(health, 0, 10)
+	
+	
+	move_and_slide()
+	
+	
+	
+	
+	
+	pass
