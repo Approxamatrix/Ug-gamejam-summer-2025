@@ -1,0 +1,6 @@
+res://Scenes/Levels/test.tscn
+res://Scenes/Entities/Enemies/Ranger.tscn
+res://Scenes/character_body_2d.tscn
+res://Scenes/Entities/Projectiles/Bullet.tscn
+res://Scenes/Entities/Projectiles/PlayerBullet.tscn
+res://Scripts/Entities/Enemies/Ranger.gd

@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://ovk8ersmfeix"]
+
+[ext_resource type="Script" uid="uid://mxu8kkv2p6hn" path="res://Scripts/Entities/Bullets/BaseBullet.gd" id="1_mdp76"]
+
+[node name="EnemyBullet_tscn" type="CharacterBody2D"]
+script = ExtResource("1_mdp76")
+metadata/_custom_type_script = "uid://mxu8kkv2p6hn"

@@ -56,7 +56,7 @@ func _ready() -> void:
 func input():
 	
 	
-	inputvector.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
+	inputvector.x = Input.get_action_strength("MoveRight") - Input.get_action_strength("MoveLeft")
 	
 	if inputvector.x != 0:
 		
@@ -70,6 +70,16 @@ func input():
 	
 	
 	if state == PlayerState.Idle:
+		
+	
+	
+		if Input.is_action_just_pressed("Jump"):
+			#state = PlayerState.Jump
+			
+			jumptimer.start()
+			plyrjump()
+		
+		
 		if Input.is_action_just_pressed("Shield"):
 			
 			shieldtimer.start()
@@ -187,6 +197,8 @@ func PlyrStateManager():
 			pass
 		
 		PlayerState.Walk:
+			
+			
 			
 			
 			if Input.is_action_just_pressed("Jump"):
@@ -307,6 +319,9 @@ func shootbullet():
 		self.get_parent().add_child(bulletinstance)
 		
 		bulletcount += 1 
+		
+		
+		
 		
 	
 	
