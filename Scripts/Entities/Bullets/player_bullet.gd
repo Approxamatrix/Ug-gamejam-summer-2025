@@ -1,6 +1,7 @@
 extends BaseBullet
 class_name PlayerBullet
 
+
 func destroybullet():
 	
 	
@@ -14,7 +15,7 @@ func dealdamage(body : Node2D):
 	if body.is_in_group("Enemy"):
 		print(body.health)
 
-		body.take_damage(2)
+		body.take_damage(damage)
 	
 	pass
 	

@@ -14,6 +14,8 @@ var state : Enemystates
 
 @export var targetrange : int
 
+@export var bulletspeed : int
+
 @export var leftray : RayCast2D
 
 @export var rightray : RayCast2D
@@ -24,7 +26,7 @@ var currbullets = 0
 
 @export var bulletlimit : int
 
-var bulletscene = preload("res://Scenes/Entities/Projectiles/Bullet.tscn")
+var bulletscene = preload("res://Scenes/Entities/Projectiles/EnemyBullet.tscn")
 
 @export var bulletoffset : int
 
@@ -215,7 +217,7 @@ func shootenemy():
 		bullet.global_position.y = self.global_position.y
 
 
-		bullet.set_speed(20 * facingdir)
+		bullet.set_speed(bulletspeed * facingdir)
 		
 		currbullets += 1
 		

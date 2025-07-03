@@ -19,6 +19,11 @@ config/icon="res://icon.svg"
 
 GameAutoload="*res://Scripts/Autoloads/game_autoload.gd"
 
+[display]
+
+window/size/viewport_width=480
+window/size/viewport_height=270
+
 [input]
 
 Jump={

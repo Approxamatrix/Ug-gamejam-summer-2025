@@ -1,12 +1,16 @@
 extends CharacterBody2D
 class_name BaseBullet
 
+
+
+@export var damage : int
 @export var SpriteNode : Sprite2D
 @export var SpriteImg : Texture2D
 @export var bullettimer : Timer
 @export var Hurtbox : Area2D
 
 var bulletspeed
+
 
 
 func _ready() -> void:
@@ -47,13 +51,3 @@ func _physics_process(delta: float) -> void:
 func dealdamage(body: Node2D):
 	
 	pass
-
-
-func _on_area_2d_body_entered(body: Node2D) -> void:
-	
-	##do stuff here lolol
-	
-	dealdamage(body)
-	print("AAA")
-	
-	pass # Replace with function body.

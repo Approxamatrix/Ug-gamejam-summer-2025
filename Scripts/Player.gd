@@ -2,7 +2,7 @@ extends CharacterBody2D
 class_name Player
 
 
-enum PlayerState {Idle,Walk,Fall,Jump,Dead}
+enum PlayerState {Idle,Walk,Fall,Jump,Stun,Dead}
 
 @export var health : int
 
@@ -24,6 +24,8 @@ var inputvector : Vector2
 
 @export var shieldtimer : Timer
 
+@export var stuntimer : Timer
+
 var facingdir
 
 var oldjumpheight 
@@ -31,6 +33,8 @@ var oldjumpheight
 var bulletscene = preload("res://Scenes/Entities/Projectiles/PlayerBullet.tscn")
 
 @export var bulletlimit : int
+
+@export var healthlabel : Label
 
 var bulletcount = 0
 
@@ -41,9 +45,10 @@ func _ready() -> void:
 	
 	state = PlayerState.Idle
 	
+	oldjumpheight = basejumpheight
+	
 	print("Player Start !")
 	
-	oldjumpheight = basejumpheight
 	
 	facingdir = 1
 	
@@ -64,22 +69,11 @@ func input():
 	
 	#print(facingdir)
 	
-	if Input.is_action_just_pressed("Shoot"):
+	if Input.is_action_just_pressed("Shoot") and GameAutoload.HasGun:
 		shootbullet()
 		pass
 	
-	
 	if state == PlayerState.Idle:
-		
-	
-	
-		if Input.is_action_just_pressed("Jump"):
-			#state = PlayerState.Jump
-			
-			jumptimer.start()
-			plyrjump()
-		
-		
 		if Input.is_action_just_pressed("Shield"):
 			
 			shieldtimer.start()
@@ -95,7 +89,23 @@ func input():
 		
 	
 	
-	dash()
+	if state == PlayerState.Idle or state == PlayerState.Walk:
+		
+	
+	
+		if Input.is_action_just_pressed("Jump"):
+			#state = PlayerState.Jump
+			
+			jumptimer.start()
+			plyrjump()
+		
+		
+		
+	
+	if GameAutoload.HasDashModule == true:
+		dash()
+	else:
+		pass
 	
 	
 	
@@ -110,13 +120,14 @@ func PlyrStateManager():
 		PlayerState.Idle:
 			
 			
-			if Input.is_action_just_pressed("Jump"):
-				
-				jumptimer.start()
-				#state = PlayerState.Jump
-				plyrjump()
-			
-			
+			#
+			#if Input.is_action_just_pressed("Jump"):
+				#
+				#jumptimer.start()
+				##state = PlayerState.Jump
+				#plyrjump()
+			#
+			#
 			#print("Idle")
 			
 			if inputvector.x != 0 or Input.is_action_pressed("Dash"):
@@ -124,15 +135,14 @@ func PlyrStateManager():
 			else:
 				pass
 			
-			if is_on_floor():
-				velocity = Vector2.ZERO
-				pass
-			else:
+			if !is_on_floor():
+				
 				
 				state = PlayerState.Fall
-				
 				pass
-			
+		
+		
+			velocity = Vector2.ZERO
 			pass
 			
 		PlayerState.Fall:
@@ -152,6 +162,7 @@ func PlyrStateManager():
 		PlayerState.Jump:
 			
 			velocity.x = inputvector.x * walkspeed
+			
 			
 			
 			#print("Jump")
@@ -198,16 +209,15 @@ func PlyrStateManager():
 		
 		PlayerState.Walk:
 			
-			
-			
-			
-			if Input.is_action_just_pressed("Jump"):
-				#state = PlayerState.Jump
-				
-				jumptimer.start()
-				plyrjump()
-				
-			
+			#
+			#
+			#if Input.is_action_just_pressed("Jump"):
+				##state = PlayerState.Jump
+				#
+				#jumptimer.start()
+				#plyrjump()
+				#
+			#
 			
 			
 			velocity.x = inputvector.x * walkspeed
@@ -221,12 +231,45 @@ func PlyrStateManager():
 			
 			
 			pass
+			
+			
+			
+			velocity.y = 0
 		
 		PlayerState.Dead:
 			
 			
 			velocity = Vector2.ZERO
 			
+		PlayerState.Stun:
+			
+			velocity.x = 0
+			
+			if stuntimer.is_stopped():
+				
+				if !is_on_floor():
+					
+					state = PlayerState.Fall
+					
+					pass
+				else:
+					state = PlayerState.Idle
+				pass
+				
+				
+			else:
+					
+				if is_on_floor():
+					
+					state = PlayerState.Idle
+					pass
+				else:
+					velocity.y += gravity * 10
+					
+					#velocity.y = 0
+					pass
+			
+			pass
 	
 	
 	pass
@@ -270,6 +313,8 @@ func dash():
 
 
 func plyrjump():
+	
+	
 	
 	if state != PlayerState.Jump: ##basically the enter function in this kinda FSM system
 		
@@ -333,10 +378,23 @@ func decrementbulletcounter():
 
 func take_damage(damage : int):
 	
-	if !shieldactive:
+	if !shieldactive or state != PlayerState.Stun:
 		health -= damage
+		clamp(health, 0, 10)
+		print("Ouch !!")
+		
+		if state != PlayerState.Stun:
+			state = PlayerState.Stun
+			stuntimer.start()
+		else:
+			
+			pass
+		
 	else:
 		pass
+		
+		
+	
 	
 	
 	
@@ -345,18 +403,25 @@ func take_damage(damage : int):
 
 func _physics_process(delta: float):
 	
+	
+	healthlabel.text = "Health : " + str(health)
+	
 	#print(" State :" + var_to_str(state))
 	if state != PlayerState.Dead :
 		input()
 	PlyrStateManager()
 	
-	clamp(health, 0, 10)
+	
+	
+	
+	if health <= 0 and state != PlayerState.Dead:
+		
+		state = PlayerState.Dead
+		
+		pass
+	
 	
 	
 	move_and_slide()
-	
-	
-	
-	
 	
 	pass

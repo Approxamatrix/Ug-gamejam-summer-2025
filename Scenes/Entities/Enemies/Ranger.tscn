@@ -12,11 +12,12 @@ collision_mask = 5
 script = ExtResource("1_ka62h")
 health = 5
 targetrange = 400
+bulletspeed = 15
 leftray = NodePath("LeftRay")
 rightray = NodePath("RightRay")
 detectorray = NodePath("DetectorRay")
 bulletlimit = 3
-bulletoffset = 200
+bulletoffset = 100
 bullcooldown = NodePath("BulletCooldown")
 shootagain = NodePath("ShootAgain")
 dirchangecooldown = NodePath("DirectionChangeCooldown")
@@ -45,7 +46,7 @@ position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_ka62h")
 
 [node name="BulletCooldown" type="Timer" parent="."]
-wait_time = 0.05
+wait_time = 0.13
 one_shot = true
 
 [node name="ShootAgain" type="Timer" parent="."]

@@ -12,6 +12,7 @@ size = Vector2(83, 86)
 [node name="PlayerBullet" type="CharacterBody2D" node_paths=PackedStringArray("SpriteNode", "bullettimer", "Hurtbox")]
 collision_mask = 5
 script = ExtResource("1_vli7v")
+damage = 2
 SpriteNode = NodePath("BulletSprite")
 bullettimer = NodePath("Timer")
 Hurtbox = NodePath("Area2D")
