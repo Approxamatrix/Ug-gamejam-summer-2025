@@ -147,7 +147,7 @@ func PlyrStateManager():
 			
 		PlayerState.Fall:
 			
-			#print("Fall")
+			#print("Fall")d
 			velocity.x = inputvector.x * walkspeed
 			if is_on_floor():
 				
@@ -180,7 +180,7 @@ func PlyrStateManager():
 			elif Input.is_action_pressed("Jump") or !jumptimer.is_stopped():
 				#velocity.y -= jumppower * 10
 				
-				basejumpheight-= 30
+				basejumpheight-= 20
 				
 				
 				velocity.y -= basejumpheight

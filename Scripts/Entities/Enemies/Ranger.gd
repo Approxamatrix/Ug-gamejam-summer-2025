@@ -40,9 +40,13 @@ var bulletscene = preload("res://Scenes/Entities/Projectiles/EnemyBullet.tscn")
 
 @export var idletimer : Timer
 
+@export var wallray : RayCast2D
+
+@export var walldist : int
+
 var facingdir = 1
 
-var wanderdir
+var wanderdir = 1
 
 
 @export var maxwanderrange : int
@@ -88,6 +92,9 @@ func EnemyStateManager():
 			pass
 			
 		Enemystates.Wander:
+			
+			facingdir = wanderdir
+			
 			print("wandering")
 			#if stopwandering.is_stopped():
 			wander()
@@ -168,7 +175,7 @@ func wander():
 	
 	
 	
-	if rightray.is_colliding() and !leftray.is_colliding():
+	if (rightray.is_colliding() and !leftray.is_colliding() ) or (wallray.is_colliding() and wallray.target_position.x < -1 ):
 	 
 		if state != Enemystates.Die:
 			state = Enemystates.Idle
@@ -177,7 +184,7 @@ func wander():
 		
 		
 
-	if leftray.is_colliding() and !rightray.is_colliding():
+	if ( leftray.is_colliding() and !rightray.is_colliding() ) or (wallray.is_colliding() and wallray.target_position.x > 1 ):
 
 		#velocity.x = 0
 		
@@ -191,9 +198,11 @@ func wander():
 		#wanderdir = 0
 		#pass
 
-	facingdir = wanderdir
+	
 	
 	detectorray.target_position.x = targetrange * facingdir
+	
+	wallray.target_position.x = walldist * facingdir
 
 	#wanderspeed = randi_range(0,maxwanderrange)
 

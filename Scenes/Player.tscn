@@ -4,15 +4,15 @@
 [ext_resource type="Texture2D" uid="uid://c6uir1mqtm15g" path="res://icon.svg" id="2_it8n0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gbyq6"]
-size = Vector2(114, 125)
+size = Vector2(70, 125)
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("jumptimer", "dashtimer", "shieldtimer", "stuntimer", "healthlabel") groups=["Player"]]
-collision_layer = 3
-collision_mask = 7
+collision_layer = 2
+collision_mask = 3
 script = ExtResource("1_88kja")
 health = 5
 gravity = 4.5
-basejumpheight = 250.0
+basejumpheight = 210.0
 walkspeed = 500.0
 runspeed = 800.0
 jumptimer = NodePath("JumpTimer")
@@ -23,6 +23,8 @@ bulletlimit = 3
 healthlabel = NodePath("Control/Label")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 1)
+scale = Vector2(0.546875, 0.984375)
 texture = ExtResource("2_it8n0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

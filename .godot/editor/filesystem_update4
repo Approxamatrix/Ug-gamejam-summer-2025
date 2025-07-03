@@ -1,7 +1,8 @@
-res://Scenes/Entities/Enemies/Ranger.tscn
-res://Scripts/Player.gd
-res://Scenes/Player.tscn
 res://Scenes/Levels/test.tscn
+res://Scenes/Entities/Enemies/Ranger.tscn
+res://Scenes/Player.tscn
 res://Scenes/Entities/Projectiles/Bullet.tscn
 res://Scenes/Entities/Projectiles/PlayerBullet.tscn
 res://Scenes/Entities/Projectiles/EnemyBullet.tscn
+res://Scripts/Player.gd
+res://Scripts/Entities/Enemies/Ranger.gd

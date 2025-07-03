@@ -4,41 +4,47 @@
 [ext_resource type="Texture2D" uid="uid://c6uir1mqtm15g" path="res://icon.svg" id="1_nkql4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ka62h"]
-size = Vector2(120, 127)
+size = Vector2(60, 127)
 
-[node name="Ranger" type="CharacterBody2D" node_paths=PackedStringArray("leftray", "rightray", "detectorray", "bullcooldown", "shootagain", "dirchangecooldown", "stopwandering", "idletimer") groups=["Enemy"]]
-collision_layer = 5
-collision_mask = 5
+[node name="Ranger" type="CharacterBody2D" node_paths=PackedStringArray("leftray", "rightray", "detectorray", "bullcooldown", "shootagain", "dirchangecooldown", "stopwandering", "idletimer", "wallray") groups=["Enemy"]]
+collision_layer = 4
+collision_mask = 4
 script = ExtResource("1_ka62h")
 health = 5
 targetrange = 400
-bulletspeed = 15
+bulletspeed = 10
 leftray = NodePath("LeftRay")
 rightray = NodePath("RightRay")
 detectorray = NodePath("DetectorRay")
 bulletlimit = 3
-bulletoffset = 100
+bulletoffset = 50
 bullcooldown = NodePath("BulletCooldown")
 shootagain = NodePath("ShootAgain")
 dirchangecooldown = NodePath("DirectionChangeCooldown")
 stopwandering = NodePath("StopWandering")
 idletimer = NodePath("IdleTimer")
+wallray = NodePath("WallRay")
+walldist = 40
 maxwanderrange = 1000
 wanderspeed = 100
 
 [node name="LeftRay" type="RayCast2D" parent="."]
-position = Vector2(-80, 0)
+position = Vector2(-37, 0)
 target_position = Vector2(0, 100)
 
 [node name="RightRay" type="RayCast2D" parent="."]
-position = Vector2(80, 0)
+position = Vector2(37, 0)
 target_position = Vector2(0, 100)
 
 [node name="DetectorRay" type="RayCast2D" parent="."]
 target_position = Vector2(400, 0)
 collision_mask = 2
 
+[node name="WallRay" type="RayCast2D" parent="."]
+target_position = Vector2(40, 0)
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.46875, 1)
 texture = ExtResource("1_nkql4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
