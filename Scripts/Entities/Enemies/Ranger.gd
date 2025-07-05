@@ -75,7 +75,7 @@ func EnemyStateManager():
 			pass
 		
 		Enemystates.Idle:
-			print("idle")
+			#print("idle")
 			
 			if idletimer.is_stopped():
 				idletimer.start()
@@ -95,7 +95,7 @@ func EnemyStateManager():
 			
 			facingdir = wanderdir
 			
-			print("wandering")
+			#print("wandering")
 			#if stopwandering.is_stopped():
 			wander()
 				#stopwandering.start()

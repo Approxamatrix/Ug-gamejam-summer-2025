@@ -1,5 +1,5 @@
-res://Sprites/Tiles/Intro/Foreground
-res://Scenes/Entities/Hazards
 res://Scripts/Hazards
+res://Scenes/Entities/Hazards
+res://Sprites/Tiles/Intro/Foreground
 res://Scripts/Entities/Bullets
 res://Scripts/Entities/Enemies

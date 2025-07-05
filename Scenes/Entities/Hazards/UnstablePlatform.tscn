@@ -1,0 +1,96 @@
+[gd_scene load_steps=8 format=3 uid="uid://c8lwg6ih7a2e"]
+
+[ext_resource type="Texture2D" uid="uid://06q2ne2h4ai0" path="res://Sprites/Tiles/Intro/Foreground/FloatingPlatform.png" id="1_2lfs2"]
+[ext_resource type="Script" uid="uid://dnuu0s078miup" path="res://Scripts/Hazards/UnstablePlatform.gd" id="1_m6dfj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lw5ii"]
+size = Vector2(32, 5.405)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m6dfj"]
+size = Vector2(32, 5)
+
+[sub_resource type="Animation" id="Animation_m6dfj"]
+resource_name = "Shake"
+length = 0.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0434612, 0.121918, 0.194246),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -1), Vector2(0, -0.55), Vector2(0, -1)]
+}
+
+[sub_resource type="Animation" id="Animation_buwk3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_buwk3"]
+_data = {
+&"RESET": SubResource("Animation_buwk3"),
+&"Shake": SubResource("Animation_m6dfj")
+}
+
+[node name="UnstablePlatform" type="CharacterBody2D" node_paths=PackedStringArray("sprite", "collision", "area", "falltimer", "respawntimer", "animplayer")]
+position = Vector2(8, 0)
+collision_layer = 2
+collision_mask = 2
+motion_mode = 1
+script = ExtResource("1_m6dfj")
+fallspeed = 10
+sprite = NodePath("Sprite2D")
+collision = NodePath("CollisionShape2D")
+area = NodePath("Area2D")
+falltimer = NodePath("FallTimer")
+respawntimer = NodePath("RespawnTimer")
+animplayer = NodePath("AnimationPlayer")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -4.7025)
+shape = SubResource("RectangleShape2D_lw5ii")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -1)
+scale = Vector2(2, 0.8)
+texture = ExtResource("1_2lfs2")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -6)
+shape = SubResource("RectangleShape2D_m6dfj")
+debug_color = Color(0.966271, 0, 0.481566, 0.42)
+
+[node name="FallTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="RespawnTimer" type="Timer" parent="."]
+wait_time = 5.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_buwk3")
+}
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="FallTimer" to="." method="fall"]
+[connection signal="timeout" from="RespawnTimer" to="." method="respawn"]

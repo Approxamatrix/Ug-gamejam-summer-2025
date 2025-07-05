@@ -33,7 +33,7 @@ shape = SubResource("RectangleShape2D_gbyq6")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, -32)
-zoom = Vector2(3, 3)
+zoom = Vector2(2, 2)
 
 [node name="JumpTimer" type="Timer" parent="."]
 wait_time = 0.7
