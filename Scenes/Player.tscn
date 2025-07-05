@@ -33,7 +33,7 @@ shape = SubResource("RectangleShape2D_gbyq6")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, -32)
-zoom = Vector2(1.5, 1.5)
+zoom = Vector2(3, 3)
 
 [node name="JumpTimer" type="Timer" parent="."]
 wait_time = 0.7
@@ -67,5 +67,4 @@ offset_bottom = 11.48
 text = "Health : "
 
 [node name="StunTimer" type="Timer" parent="."]
-wait_time = 0.5
 one_shot = true

@@ -241,6 +241,10 @@ func PlyrStateManager():
 			
 			velocity = Vector2.ZERO
 			
+			
+			$StunTimer
+			
+			
 		PlayerState.Stun:
 			
 			velocity.x = 0
