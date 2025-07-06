@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://c4nos475itjan"]
+[gd_scene load_steps=13 format=4 uid="uid://c4nos475itjan"]
 
 [ext_resource type="Texture2D" uid="uid://c6uir1mqtm15g" path="res://icon.svg" id="1_cmgem"]
 [ext_resource type="PackedScene" uid="uid://cj3vm8nx1o1jj" path="res://Scenes/Player.tscn" id="2_4te2q"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://ct6gyng3jmsu0" path="res://Scenes/Entities/Enemies/Ranger.tscn" id="3_q1p36"]
 [ext_resource type="PackedScene" uid="uid://c8lwg6ih7a2e" path="res://Scenes/Entities/Hazards/UnstablePlatform.tscn" id="4_pgtsq"]
 [ext_resource type="Texture2D" uid="uid://06q2ne2h4ai0" path="res://Sprites/Tiles/Intro/Foreground/FloatingPlatform.png" id="4_x0mv3"]
+[ext_resource type="Script" uid="uid://3gvuuhy0nnbn" path="res://Scripts/Entities/fake_player.gd" id="7_xdu2t"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cmgem"]
 size = Vector2(2349, 128)
@@ -194,5 +195,17 @@ position = Vector2(6700, -205)
 [node name="Ranger6" parent="." instance=ExtResource("3_q1p36")]
 position = Vector2(1647, -1225)
 
-[node name="Player" parent="." instance=ExtResource("2_4te2q")]
+[node name="Player" parent="." node_paths=PackedStringArray("Camera") instance=ExtResource("2_4te2q")]
 position = Vector2(-648, 9)
+Camera = NodePath("../FakePlayer/Camera2D")
+CameraoffsetY = -50
+
+[node name="FakePlayer" type="Sprite2D" parent="." node_paths=PackedStringArray("player")]
+physics_interpolation_mode = 1
+texture = ExtResource("1_cmgem")
+script = ExtResource("7_xdu2t")
+player = NodePath("../Player")
+metadata/_custom_type_script = "uid://3gvuuhy0nnbn"
+
+[node name="Camera2D" type="Camera2D" parent="FakePlayer"]
+process_callback = 0

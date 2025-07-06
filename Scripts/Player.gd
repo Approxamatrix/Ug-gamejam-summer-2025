@@ -40,6 +40,10 @@ var bulletcount = 0
 
 var shieldactive : bool
 
+@export var Camera : Camera2D
+@export var CameraoffsetY : int
+
+
 
 func _ready() -> void:
 	
@@ -222,6 +226,10 @@ func PlyrStateManager():
 			
 			velocity.x = inputvector.x * walkspeed
 			
+			
+			#velocity.x = lerpf(velocity.x,inputvector.x * (walkspeed* 4),0.1)
+			
+			
 			if inputvector.x == 0 or dashtimer.is_stopped():
 				state = PlayerState.Idle
 			
@@ -242,7 +250,7 @@ func PlyrStateManager():
 			velocity = Vector2.ZERO
 			
 			
-			$StunTimer
+			
 			
 			
 		PlayerState.Stun:
@@ -405,8 +413,43 @@ func take_damage(damage : int):
 	pass
 
 
+func Cameramanager():
+	
+	Camera.position.x = position.x
+	
+	if is_on_floor():
+		Camera.position.y = lerp(Camera.position.y,position.y + CameraoffsetY,0.025)
+		
+	if !is_on_floor():
+		
+		var distancefromplyr
+		distancefromplyr = abs(position.y - Camera.position.y)
+		
+		if distancefromplyr >= 50:
+			Camera.position.y = lerp(Camera.position.y,position.y + CameraoffsetY,0.025)
+		
+		
+		
+		
+		
+		
+		
+		pass
+	
+	
+	
+	pass
+
+
+
 func _physics_process(delta: float):
 	
+	if Camera != null:
+		#Cameramanager()
+		pass
+		
+	else:
+		print("Error ! Player has no assigned camera !!")
 	
 	healthlabel.text = "Health : " + str(health)
 	

@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://bbh3eqqbdtvwn"]
+
+[ext_resource type="Texture2D" uid="uid://c6uir1mqtm15g" path="res://icon.svg" id="1_17xke"]
+[ext_resource type="Script" uid="uid://3gvuuhy0nnbn" path="res://Scripts/Entities/fake_player.gd" id="2_pj02b"]
+
+[node name="FakePlayer" type="Sprite2D"]
+texture = ExtResource("1_17xke")
+script = ExtResource("2_pj02b")
