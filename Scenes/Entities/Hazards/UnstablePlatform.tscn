@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://c8lwg6ih7a2e"]
+[gd_scene load_steps=9 format=3 uid="uid://c8lwg6ih7a2e"]
 
 [ext_resource type="Texture2D" uid="uid://06q2ne2h4ai0" path="res://Sprites/Tiles/Intro/Foreground/FloatingPlatform.png" id="1_2lfs2"]
 [ext_resource type="Script" uid="uid://dnuu0s078miup" path="res://Scripts/Hazards/UnstablePlatform.gd" id="1_m6dfj"]
@@ -47,7 +47,11 @@ _data = {
 &"Shake": SubResource("Animation_m6dfj")
 }
 
-[node name="UnstablePlatform" type="CharacterBody2D" node_paths=PackedStringArray("sprite", "collision", "area", "falltimer", "respawntimer", "animplayer")]
+[sub_resource type="Gradient" id="Gradient_m6dfj"]
+offsets = PackedFloat32Array(0.00265957, 0.521277, 0.664894, 0.864362)
+colors = PackedColorArray(0.954458, 2.11775e-06, 9.62615e-07, 1, 1, 0.878431, 0, 1, 0.965516, 0.736835, 0.70694, 1, 0.913723, 0.809699, 0.00212391, 1)
+
+[node name="UnstablePlatform" type="CharacterBody2D" node_paths=PackedStringArray("sprite", "collision", "area", "falltimer", "respawntimer", "emitterleft", "emitterright", "animplayer")]
 position = Vector2(8, 0)
 collision_layer = 2
 collision_mask = 2
@@ -59,6 +63,8 @@ collision = NodePath("CollisionShape2D")
 area = NodePath("Area2D")
 falltimer = NodePath("FallTimer")
 respawntimer = NodePath("RespawnTimer")
+emitterleft = NodePath("SparksLeft")
+emitterright = NodePath("SparksRight")
 animplayer = NodePath("AnimationPlayer")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -90,6 +96,36 @@ wait_time = 5.0
 libraries = {
 &"": SubResource("AnimationLibrary_buwk3")
 }
+
+[node name="SparksLeft" type="CPUParticles2D" parent="."]
+position = Vector2(-16, -6)
+emitting = false
+amount = 30
+lifetime = 0.2
+emission_shape = 1
+emission_sphere_radius = 4.02
+direction = Vector2(-1, -1)
+initial_velocity_min = 99.06
+initial_velocity_max = 250.0
+scale_amount_min = 5.0
+scale_amount_max = 10.0
+color = Color(0.887796, 0.650964, 0.395668, 1)
+color_ramp = SubResource("Gradient_m6dfj")
+
+[node name="SparksRight" type="CPUParticles2D" parent="."]
+position = Vector2(16, -6)
+emitting = false
+amount = 30
+lifetime = 0.2
+emission_shape = 1
+emission_sphere_radius = 4.02
+direction = Vector2(1, -1)
+initial_velocity_min = 99.06
+initial_velocity_max = 250.0
+scale_amount_min = 5.0
+scale_amount_max = 10.0
+color = Color(0.887796, 0.650964, 0.395668, 1)
+color_ramp = SubResource("Gradient_m6dfj")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="timeout" from="FallTimer" to="." method="fall"]

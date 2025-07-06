@@ -9,6 +9,9 @@ var ogpos : Vector2
 @export var area : Area2D
 @export var falltimer : Timer
 @export var respawntimer : Timer
+
+@export var emitterleft : CPUParticles2D
+@export var emitterright : CPUParticles2D
 @export var animplayer : AnimationPlayer
 
 enum state {Idle,Fall,Reset}
@@ -52,6 +55,9 @@ func fall():
 	#area.visible = false
 	
 	respawntimer.start()
+	
+	emitterleft.emitting = true
+	emitterright.emitting = true
 	
 	#actuallyfall()
 	
@@ -108,7 +114,11 @@ func _physics_process(delta: float) -> void:
 
 				
 				pass
-			
+				
+			if emitterleft.emitting:
+				emitterleft.emitting = false
+				emitterright.emitting = false
+		
 			velocity.y = 0
 			
 			if falltimer.time_left <= 0.15:

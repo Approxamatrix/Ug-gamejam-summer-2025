@@ -25,6 +25,7 @@ healthlabel = NodePath("Control/Label")
 CameraoffsetY = 20
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(0, 1)
 scale = Vector2(0.546875, 0.984375)
 texture = ExtResource("2_it8n0")
