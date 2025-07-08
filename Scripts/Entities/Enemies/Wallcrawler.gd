@@ -1,66 +1,78 @@
-##TODO : stop the enemy from going over the edge 
-## when one of the raycasts is not detecting anything
-
-
 extends CharacterBody2D
+class_name Wallcrawler
 
-class_name Ranger
-
-enum Enemystates {Idle, Wander, Shoot, Die}
-
-var state : Enemystates
 
 @export var health : int
 
-@export var targetrange : int
-
-@export var bulletspeed : int
-
-@export var leftray : RayCast2D
-
-@export var rightray : RayCast2D
-
-@export var detectorray : RayCast2D
-
-var currbullets = 0
+@export var wanderspeed : int
 
 @export var bulletlimit : int
 
-var bulletscene = preload("res://Scenes/Entities/Projectiles/EnemyBullet.tscn")
+@export var bulletspeed : int
 
 @export var bulletoffset : int
+
+var bulletscene = preload("res://Scenes/Entities/Projectiles/EnemyBullet.tscn")
+
+@export var detectionarea : Area2D
+
+@export var wallray : RayCast2D
+@export var walldist : int
+
+@export var leftray : RayCast2D
+@export var rightray : RayCast2D
+
+@export var idletimer : Timer
 
 @export var bullcooldown : Timer
 
 @export var shootagain : Timer
 
+
+@export var player : Player
+
+var currbullets : int
+
+
+
+
+enum Enemystates {Idle, Wander, Shoot, Die}
+
+var state : Enemystates
+
 @export var dirchangecooldown : Timer
 
-@export var stopwandering : Timer
+var wanderdir : int = -1
 
-@export var idletimer : Timer
-
-@export var wallray : RayCast2D
-
-@export var walldist : int
-
-var facingdir = 1
-
-var wanderdir = 1
+var facingdir : int = -1
 
 
-@export var maxwanderrange : int
-
-var spawnpoint
-
-@export var wanderspeed : int
-
-func _ready():
-
-	spawnpoint = self.global_position
+func _ready() -> void:
 	
 	state = Enemystates.Idle
 	
+	
+	
+	pass
+	
+	
+func _physics_process(delta: float) -> void:
+	
+	EnemyStateManager()
+	
+	move_and_slide()
+	
+	
+	if health <= 0 and state != Enemystates.Die:
+		
+		state = Enemystates.Die
+		
+		pass
+	
+	#print(velocity.x)
+	
+	pass
+
 
 
 func EnemyStateManager():
@@ -82,8 +94,8 @@ func EnemyStateManager():
 			
 			velocity.x = 0
 			
-			if detectorray.is_colliding():
-				state = Enemystates.Shoot
+			if detectionarea.has_overlapping_bodies():
+				
 				pass
 				
 			
@@ -100,8 +112,7 @@ func EnemyStateManager():
 			wander()
 				#stopwandering.start()
 			
-			if detectorray.is_colliding():
-				state = Enemystates.Shoot
+			if detectionarea.has_overlapping_bodies(): 
 				pass
 			
 			
@@ -128,7 +139,7 @@ func EnemyStateManager():
 				
 				pass
 			
-			if !detectorray.is_colliding():
+			if !player:
 				
 				state = Enemystates.Idle
 			
@@ -138,6 +149,9 @@ func EnemyStateManager():
 	
 	pass
 	
+
+
+
 
 
 
@@ -152,6 +166,29 @@ func startwandering():
 			
 	
 	pass
+
+
+
+
+func shootenemy():
+	
+	if player != null:
+		if currbullets < bulletlimit:
+			var bullet = bulletscene.instantiate()
+			self.get_parent().add_child(bullet)
+			bullet.global_position.x = self.global_position.x + (bulletoffset * global_position.direction_to(player.global_position).x)
+			bullet.global_position.y = self.global_position.y + 30
+			var dirtoplyr : Vector2
+			dirtoplyr = self.global_position.direction_to(player.global_position)
+			bullet.set_speed(bulletspeed * dirtoplyr.x , bulletspeed * dirtoplyr.y)
+			print(dirtoplyr)
+			currbullets += 1
+		
+	else:
+		
+		pass
+
+
 
 func wander():
 	
@@ -200,10 +237,9 @@ func wander():
 #
 		#wanderdir = 0
 		#pass
-
 	
 	
-	detectorray.target_position.x = targetrange * facingdir
+	#detectorray.target_position.x = targetrange * facingdir
 	
 	wallray.target_position.x = walldist * facingdir
 
@@ -219,46 +255,14 @@ func wander():
 	self.velocity.x = wanderpos.x
 
 
-func shootenemy():
-	if currbullets < bulletlimit:
-
-		var bullet = bulletscene.instantiate()
-		self.get_parent().add_child(bullet)
-
-		bullet.global_position.x = self.global_position.x + (bulletoffset * facingdir)
-		bullet.global_position.y = self.global_position.y
-
-
-		bullet.set_speed(bulletspeed * facingdir,0)
-		
-		currbullets += 1
-		
-
-func  _physics_process(delta: float) -> void:
-	
-	EnemyStateManager()
-	
-	move_and_slide()
-	
-	
-	if health <= 0 and state != Enemystates.Die:
-		
-		state = Enemystates.Die
-		
-		pass
-	
-	#print(velocity.x)
-	
-	pass
-
-
 func _on_shoot_again_timeout() -> void:
 	
 	currbullets = 0
+	
 	pass # Replace with function body.
 
 
-func direction_change_timeout() -> void:
+func _on_dir_change_timer_timeout() -> void:
 	
 	if state == Enemystates.Wander:
 		
@@ -269,13 +273,41 @@ func direction_change_timeout() -> void:
 	
 	
 	
-func take_damage(damage : int):
 	
-	#if !shieldactive:
-	health -= damage
-	#else:
-		#pass
-	#
-	#
+	pass # Replace with function body.
+
+
+func _on_detection_area_body_entered(body: Node2D) -> void:
 	
-	pass
+	
+	if body.is_in_group("Player"):
+		
+		
+		
+		player = body
+		
+		if state == Enemystates.Wander or state == Enemystates.Idle:
+			
+			state = Enemystates.Shoot
+			
+			pass
+	
+	
+	
+	pass # Replace with function body.
+
+
+func _on_detection_area_body_exited(body: Node2D) -> void:
+	
+	if body.is_in_group("Player"):
+		
+		body = null
+		
+		if state == Enemystates.Shoot:
+			
+			state = Enemystates.Idle
+			
+			pass
+	
+	
+	pass # Replace with function body.

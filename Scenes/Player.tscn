@@ -11,7 +11,7 @@ physics_interpolation_mode = 1
 collision_layer = 2
 collision_mask = 3
 script = ExtResource("1_88kja")
-health = 5
+health = 10
 gravity = 4.5
 basejumpheight = 210.0
 walkspeed = 500.0
@@ -53,6 +53,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="Label" type="Label" parent="Control"]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = -2.462
@@ -66,4 +67,5 @@ offset_bottom = 11.48
 text = "Health : "
 
 [node name="StunTimer" type="Timer" parent="."]
+wait_time = 1.5
 one_shot = true

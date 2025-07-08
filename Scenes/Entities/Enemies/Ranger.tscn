@@ -10,7 +10,7 @@ size = Vector2(60, 127)
 collision_layer = 4
 script = ExtResource("1_ka62h")
 health = 5
-targetrange = 400
+targetrange = 350
 bulletspeed = 10
 leftray = NodePath("LeftRay")
 rightray = NodePath("RightRay")
@@ -36,12 +36,12 @@ position = Vector2(37, 0)
 target_position = Vector2(0, 100)
 
 [node name="DetectorRay" type="RayCast2D" parent="."]
-target_position = Vector2(400, 0)
+target_position = Vector2(350, 0)
 collision_mask = 2
 
 [node name="WallRay" type="RayCast2D" parent="."]
-visible = false
 target_position = Vector2(40, 0)
+collision_mask = 5
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.46875, 1)

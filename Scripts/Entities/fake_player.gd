@@ -5,6 +5,6 @@ class_name FakePlayer
 
 func _physics_process(delta: float) -> void:
 	
-	position = lerp(position,player.global_position,0.8)
+	position = lerp(position,player.global_position,0.6)
 	
 	pass

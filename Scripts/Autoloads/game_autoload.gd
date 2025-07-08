@@ -3,6 +3,6 @@ extends Node
 
 signal DecreasePlyrBulletCounter
 
-var HasDashModule : bool = true
+var HasDashModule : bool = false
 
-var HasGun : bool = true
+var HasGun : bool = false

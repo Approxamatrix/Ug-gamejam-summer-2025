@@ -41,6 +41,9 @@ var bulletcount = 0
 var shieldactive : bool
 
 @export var Camera : Camera2D
+
+@export var fakeplyr : FakePlayer
+
 @export var CameraoffsetY : int
 
 
@@ -152,7 +155,7 @@ func PlyrStateManager():
 		PlayerState.Fall:
 			
 			#print("Fall")d
-			velocity.x = inputvector.x * walkspeed
+			velocity.x = inputvector.x * (walkspeed/2)
 			if is_on_floor():
 				
 				state = PlayerState.Idle
@@ -165,7 +168,7 @@ func PlyrStateManager():
 		
 		PlayerState.Jump:
 			
-			velocity.x = inputvector.x * walkspeed
+			velocity.x = inputvector.x * (walkspeed/2)
 			
 			
 			
@@ -189,7 +192,7 @@ func PlyrStateManager():
 				
 				velocity.y -= basejumpheight
 				
-				print(basejumpheight)
+				#print(basejumpheight)
 			
 			
 			
@@ -371,7 +374,7 @@ func shootbullet():
 		
 		bulletinstance.position = bulletpos
 		
-		bulletinstance.set_speed(20 * facingdir )
+		bulletinstance.set_speed(20 * facingdir , 0)
 		
 		self.get_parent().add_child(bulletinstance)
 		
@@ -415,18 +418,18 @@ func take_damage(damage : int):
 
 func Cameramanager():
 	
-	Camera.position.x = position.x
+	Camera.position.x =  fakeplyr.position.x
 	
 	if is_on_floor():
-		Camera.position.y = lerp(Camera.position.y,position.y + CameraoffsetY,0.025)
+		Camera.position.y = lerp(Camera.position.y,fakeplyr.position.y + CameraoffsetY ,0.025)
 		
 	if !is_on_floor():
 		
 		var distancefromplyr
-		distancefromplyr = abs(position.y - Camera.position.y)
+		distancefromplyr = abs(fakeplyr.position.y - Camera.position.y)
 		
 		if distancefromplyr >= 50:
-			Camera.position.y = lerp(Camera.position.y,position.y + CameraoffsetY,0.025)
+			Camera.position.y = lerp(Camera.position.y, fakeplyr.position.y + CameraoffsetY,0.025)
 		
 		
 		
@@ -445,7 +448,7 @@ func Cameramanager():
 func _physics_process(delta: float):
 	
 	if Camera != null:
-		#Cameramanager()
+		Cameramanager()
 		pass
 		
 	else:

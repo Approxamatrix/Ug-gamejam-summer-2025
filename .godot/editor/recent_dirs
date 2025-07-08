@@ -1,6 +1,9 @@
+res://
+res://Scenes/Levels
+res://Scripts/Entities/Enemies
+res://Scenes/Entities/Enemies
 res://Scripts/Entities
 res://Scripts/Hazards
 res://Scenes/Entities/Hazards
 res://Sprites/Tiles/Intro/Foreground
 res://Scripts/Entities/Bullets
-res://Scripts/Entities/Enemies

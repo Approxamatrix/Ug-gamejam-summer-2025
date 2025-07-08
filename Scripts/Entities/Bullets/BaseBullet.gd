@@ -9,8 +9,8 @@ class_name BaseBullet
 @export var bullettimer : Timer
 @export var Hurtbox : Area2D
 
-var bulletspeed
-
+var xbulletspeed
+var ybulletspeed = 0
 
 
 func _ready() -> void:
@@ -25,19 +25,24 @@ func destroybullet():
 	pass
 
 
-func set_speed(speed : int):
+func set_speed(xspeed : int, yspeed : int):
 	
-	bulletspeed = speed
+	xbulletspeed = xspeed
 	
 	pass
 
 func _physics_process(delta: float) -> void:
 	
 	
-	velocity.x += bulletspeed
+	velocity.x += xbulletspeed
+	velocity.y += ybulletspeed
 	
-	if abs(velocity.x) >= abs(bulletspeed):
-		velocity.x = bulletspeed
+	if abs(velocity.x) >= abs(xbulletspeed):
+		velocity.x = xbulletspeed
+		
+	
+	if abs(velocity.y) >= abs(ybulletspeed):
+		velocity.y = ybulletspeed
 	
 	var collisions = move_and_collide(velocity)
 	
