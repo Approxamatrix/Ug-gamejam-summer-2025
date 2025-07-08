@@ -2,6 +2,11 @@ extends CharacterBody2D
 class_name Wallcrawler
 
 
+##TODO : Add a timer for how long it takes the enemy to attack the player
+## BUT make it a random time between a specific range
+
+
+
 @export var health : int
 
 @export var wanderspeed : int
@@ -177,10 +182,11 @@ func shootenemy():
 			var bullet = bulletscene.instantiate()
 			self.get_parent().add_child(bullet)
 			bullet.global_position.x = self.global_position.x + (bulletoffset * global_position.direction_to(player.global_position).x)
-			bullet.global_position.y = self.global_position.y + 30
+			bullet.global_position.y = self.global_position.y + 10
 			var dirtoplyr : Vector2
 			dirtoplyr = self.global_position.direction_to(player.global_position)
 			bullet.set_speed(bulletspeed * dirtoplyr.x , bulletspeed * dirtoplyr.y)
+			print(Vector2(bulletspeed * dirtoplyr.x , bulletspeed * dirtoplyr.y))
 			print(dirtoplyr)
 			currbullets += 1
 		

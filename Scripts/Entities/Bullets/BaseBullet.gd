@@ -28,7 +28,7 @@ func destroybullet():
 func set_speed(xspeed : int, yspeed : int):
 	
 	xbulletspeed = xspeed
-	
+	ybulletspeed = yspeed
 	pass
 
 func _physics_process(delta: float) -> void:
@@ -51,7 +51,7 @@ func _physics_process(delta: float) -> void:
 	
 	pass
 	
-	
+	move_and_collide(velocity)
 
 func dealdamage(body: Node2D):
 	
