@@ -1,5 +1,7 @@
-res://Scenes/Entities/Enemies/Wallcrawler.tscn
-res://Scripts/Entities/Enemies/Wallcrawler.gd
-res://Scenes/Levels/TestArea.tscn
 res://Scenes/Levels/Intro.tscn
-res://Scripts/Player.gd
+res://Scenes/Entities/Enemies/Wallcrawler.tscn
+res://Scenes/Entities/Modules/CollectibleModule.tscn
+res://Scripts/Modules/BlasterUnlock.gd
+res://Scenes/Entities/Modules/UnlockBlaster.tscn
+res://Scenes/Entities/Modules/UnlockDash.tscn
+res://Scripts/Modules/UnlockDash.gd
