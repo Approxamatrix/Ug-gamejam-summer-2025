@@ -421,7 +421,7 @@ func Cameramanager():
 	Camera.position.x =  fakeplyr.position.x
 	
 	if is_on_floor():
-		Camera.position.y = lerp(Camera.position.y,fakeplyr.position.y + CameraoffsetY ,0.025)
+		Camera.position.y = lerp(Camera.position.y,fakeplyr.position.y + CameraoffsetY ,0.25)
 		
 	if !is_on_floor():
 		

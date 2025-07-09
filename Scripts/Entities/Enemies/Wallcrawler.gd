@@ -33,11 +33,17 @@ var bulletscene = preload("res://Scenes/Entities/Projectiles/EnemyBullet.tscn")
 
 @export var shootagain : Timer
 
+@export var BeginAttackTimer : Timer
+
+@export var beginattackmaxtime : float
+
+@export var changeattackdirdelaytimer : Timer
 
 @export var player : Player
 
 var currbullets : int
 
+var dirtoplyr : Vector2
 
 
 
@@ -67,6 +73,10 @@ func _physics_process(delta: float) -> void:
 	
 	move_and_slide()
 	
+	
+	if !BeginAttackTimer.is_stopped():
+		print(BeginAttackTimer.time_left)
+		pass
 	
 	if health <= 0 and state != Enemystates.Die:
 		
@@ -119,7 +129,10 @@ func EnemyStateManager():
 			
 			if detectionarea.has_overlapping_bodies(): 
 				pass
-			
+				
+				
+			if player != null:
+				randomizebeginattacktimer()
 			
 			pass
 			
@@ -127,21 +140,21 @@ func EnemyStateManager():
 			
 			velocity.x = 0
 			
-			if currbullets <= bulletlimit:
-				if bullcooldown.is_stopped() and shootagain.is_stopped():
-					shootenemy()
-					bullcooldown.start()
+			#if currbullets <= bulletlimit:
+			if bullcooldown.is_stopped() and shootagain.is_stopped():
+				shootenemy()
+				bullcooldown.start()
 				
 				
 				
 				
-			if currbullets >= bulletlimit:
+			#if currbullets >= bulletlimit:
 				
-				if shootagain.is_stopped():
-					
-					shootagain.start()
-					pass
+			if shootagain.is_stopped():
 				
+				shootagain.start()
+				pass
+			
 				pass
 			
 			if !player:
@@ -178,17 +191,28 @@ func startwandering():
 func shootenemy():
 	
 	if player != null:
-		if currbullets < bulletlimit:
-			var bullet = bulletscene.instantiate()
-			self.get_parent().add_child(bullet)
-			bullet.global_position.x = self.global_position.x + (bulletoffset * global_position.direction_to(player.global_position).x)
-			bullet.global_position.y = self.global_position.y + 10
-			var dirtoplyr : Vector2
-			dirtoplyr = self.global_position.direction_to(player.global_position)
-			bullet.set_speed(bulletspeed * dirtoplyr.x , bulletspeed * dirtoplyr.y)
-			print(Vector2(bulletspeed * dirtoplyr.x , bulletspeed * dirtoplyr.y))
-			print(dirtoplyr)
-			currbullets += 1
+	#if currbullets < bulletlimit:
+		var bullet = bulletscene.instantiate()
+		self.get_parent().add_child(bullet)
+		bullet.global_position.x = self.global_position.x + (bulletoffset * global_position.direction_to(player.global_position).x)
+		bullet.global_position.y = self.global_position.y + 10
+		#dirtoplyr = self.global_position.direction_to(player.global_position)
+		bullet.set_speed(bulletspeed * dirtoplyr.x , bulletspeed * dirtoplyr.y)
+		print(Vector2(bulletspeed * dirtoplyr.x , bulletspeed * dirtoplyr.y))
+		print(dirtoplyr)
+		currbullets += 1
+		
+		if changeattackdirdelaytimer.is_stopped():
+			#print("AAAAAAAAAAAAAdddddddd")
+			changeattackdirdelaytimer.start()
+		
+		#BeginAttackTimer.start()
+		
+		randomizebeginattacktimer()
+		state = Enemystates.Idle
+			
+			#dirtoplyr = self.global_position.direction_to(player.global_position)
+
 		
 	else:
 		
@@ -282,21 +306,25 @@ func _on_dir_change_timer_timeout() -> void:
 	
 	pass # Replace with function body.
 
+func randomizebeginattacktimer():
+	if BeginAttackTimer.is_stopped():
+		BeginAttackTimer.wait_time = randi_range(0.1,beginattackmaxtime)
+		BeginAttackTimer.start()
+	else:
+		print("IDKIDKIDK")
+
 
 func _on_detection_area_body_entered(body: Node2D) -> void:
 	
 	
 	if body.is_in_group("Player"):
 		
-		
+		randomizebeginattacktimer()
 		
 		player = body
-		
-		if state == Enemystates.Wander or state == Enemystates.Idle:
-			
-			state = Enemystates.Shoot
-			
-			pass
+		dirtoplyr = self.global_position.direction_to(player.global_position)
+
+		changeattackdirdelaytimer.start()
 	
 	
 	
@@ -316,4 +344,24 @@ func _on_detection_area_body_exited(body: Node2D) -> void:
 			pass
 	
 	
+	pass # Replace with function body.
+
+
+func _on_begin_attack_timeout() -> void:
+	
+	if player != null:
+		if state == Enemystates.Wander or state == Enemystates.Idle:
+			print("attack starts now !!")
+			currbullets = 0
+			print("currbullets" + str(currbullets))
+			state = Enemystates.Shoot
+			
+			pass
+	
+	pass # Replace with function body.
+
+
+func _on_attack_delay_timeout() -> void:
+	if player != null:
+		dirtoplyr = self.global_position.direction_to(player.global_position)
 	pass # Replace with function body.

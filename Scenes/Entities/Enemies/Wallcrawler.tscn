@@ -9,14 +9,14 @@ size = Vector2(128, 66)
 [sub_resource type="CircleShape2D" id="CircleShape2D_apfxx"]
 radius = 408.02
 
-[node name="Wallcrawler" type="CharacterBody2D" node_paths=PackedStringArray("detectionarea", "wallray", "leftray", "rightray", "idletimer", "bullcooldown", "shootagain", "dirchangecooldown")]
-collision_layer = 6
+[node name="Wallcrawler" type="CharacterBody2D" node_paths=PackedStringArray("detectionarea", "wallray", "leftray", "rightray", "idletimer", "bullcooldown", "shootagain", "BeginAttackTimer", "changeattackdirdelaytimer", "dirchangecooldown")]
+collision_layer = 5
 collision_mask = 4
 script = ExtResource("1_apfxx")
 health = 10
 wanderspeed = 50
 bulletlimit = 100
-bulletspeed = 5
+bulletspeed = 4
 detectionarea = NodePath("DetectionArea")
 wallray = NodePath("WallRay")
 walldist = 40
@@ -25,6 +25,9 @@ rightray = NodePath("RightRay")
 idletimer = NodePath("IdleTimer")
 bullcooldown = NodePath("BulletCooldown")
 shootagain = NodePath("ShootAgain")
+BeginAttackTimer = NodePath("BeginAttack")
+beginattackmaxtime = 5.0
+changeattackdirdelaytimer = NodePath("ChangeAttackDirDelay")
 dirchangecooldown = NodePath("DirChangeTimer")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -42,7 +45,7 @@ position = Vector2(70, 0)
 target_position = Vector2(0, -100)
 
 [node name="DirChangeTimer" type="Timer" parent="."]
-wait_time = 10.0
+wait_time = 15.0
 one_shot = true
 
 [node name="WallRay" type="RayCast2D" parent="."]
@@ -70,8 +73,17 @@ one_shot = true
 [node name="ShootAgain" type="Timer" parent="."]
 one_shot = true
 
+[node name="BeginAttack" type="Timer" parent="."]
+one_shot = true
+
+[node name="ChangeAttackDirDelay" type="Timer" parent="."]
+wait_time = 0.15
+one_shot = true
+
 [connection signal="timeout" from="DirChangeTimer" to="." method="_on_dir_change_timer_timeout"]
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="DetectionArea" to="." method="_on_detection_area_body_exited"]
 [connection signal="timeout" from="IdleTimer" to="." method="startwandering"]
 [connection signal="timeout" from="ShootAgain" to="." method="_on_shoot_again_timeout"]
+[connection signal="timeout" from="BeginAttack" to="." method="_on_begin_attack_timeout"]
+[connection signal="timeout" from="ChangeAttackDirDelay" to="." method="_on_attack_delay_timeout"]

@@ -1,8 +1,5 @@
-res://Scenes/Levels/Intro.tscn
 res://Scenes/Entities/Enemies/Wallcrawler.tscn
-res://Scenes/Levels/TestArea.tscn
-res://Scenes/Entities/Projectiles/EnemyBullet.tscn
 res://Scripts/Entities/Enemies/Wallcrawler.gd
-res://Scenes/Entities/Projectiles/Bullet.tscn
-res://Scripts/Entities/Bullets/BaseBullet.gd
-res://Scenes/Entities/Projectiles/PlayerBullet.tscn
+res://Scenes/Levels/TestArea.tscn
+res://Scenes/Levels/Intro.tscn
+res://Scripts/Player.gd
