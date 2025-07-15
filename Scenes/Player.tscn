@@ -9,7 +9,7 @@ size = Vector2(70, 125)
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("jumptimer", "dashtimer", "shieldtimer", "stuntimer", "healthlabel") groups=["Player"]]
 physics_interpolation_mode = 1
 collision_layer = 2
-collision_mask = 3
+collision_mask = 7
 script = ExtResource("1_88kja")
 health = 10
 gravity = 4.5

@@ -59,6 +59,23 @@ func _ready():
 
 	spawnpoint = self.global_position
 	
+	if leftray.is_colliding() and rightray.is_colliding():
+		
+		position = leftray.get_collision_point()
+		
+		pass
+	
+	if leftray.is_colliding() and !rightray.is_colliding():
+		position = leftray.get_collision_point()
+		
+	
+	if !leftray.is_colliding() and rightray.is_colliding():
+		
+		position = rightray.get_collision_point()
+		
+		pass
+	
+	
 	state = Enemystates.Idle
 	
 

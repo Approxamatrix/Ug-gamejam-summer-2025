@@ -7,7 +7,7 @@
 size = Vector2(32, 5.405)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m6dfj"]
-size = Vector2(32, 5)
+size = Vector2(32, 7.5)
 
 [sub_resource type="Animation" id="Animation_buwk3"]
 length = 0.001
@@ -53,8 +53,8 @@ colors = PackedColorArray(0.954458, 2.11775e-06, 9.62615e-07, 1, 1, 0.878431, 0,
 
 [node name="UnstablePlatform" type="CharacterBody2D" node_paths=PackedStringArray("sprite", "collision", "area", "falltimer", "respawntimer", "emitterleft", "emitterright", "animplayer")]
 position = Vector2(8, 0)
-collision_layer = 2
-collision_mask = 2
+collision_layer = 4
+collision_mask = 0
 motion_mode = 1
 script = ExtResource("1_m6dfj")
 fallspeed = 10
@@ -81,9 +81,9 @@ collision_layer = 2
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(0, -6)
+position = Vector2(0, -7.25)
 shape = SubResource("RectangleShape2D_m6dfj")
-debug_color = Color(0.966271, 0, 0.481566, 0.42)
+debug_color = Color(0.797443, 0.422976, 1.92523e-07, 0.42)
 
 [node name="FallTimer" type="Timer" parent="."]
 wait_time = 0.5

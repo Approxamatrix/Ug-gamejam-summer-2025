@@ -102,6 +102,8 @@ func EnemyStateManager():
 			pass
 		
 		Enemystates.Idle:
+			
+			
 			#print("idle")
 			
 			if idletimer.is_stopped():
@@ -120,6 +122,8 @@ func EnemyStateManager():
 			
 		Enemystates.Wander:
 			
+			
+			
 			facingdir = wanderdir
 			
 			#print("wandering")
@@ -134,32 +138,37 @@ func EnemyStateManager():
 			if player != null:
 				randomizebeginattacktimer()
 			
+			if player == null:
+				BeginAttackTimer.stop()
+			
 			pass
 			
 		Enemystates.Shoot:
 			
+			
 			velocity.x = 0
 			
 			#if currbullets <= bulletlimit:
-			if bullcooldown.is_stopped() and shootagain.is_stopped():
-				shootenemy()
-				bullcooldown.start()
+			if player != null:
+				if bullcooldown.is_stopped() and shootagain.is_stopped():
+					shootenemy()
+					bullcooldown.start()
+					
+					
+					
+					
+				#if currbullets >= bulletlimit:
+					
+				if shootagain.is_stopped():
+					
+					shootagain.start()
+					pass
 				
-				
-				
-				
-			#if currbullets >= bulletlimit:
-				
-			if shootagain.is_stopped():
-				
-				shootagain.start()
-				pass
+					pass
 			
-				pass
-			
-			if !player:
-				
-				state = Enemystates.Idle
+			#if !player:
+				#
+				#state = Enemystates.Idle
 			
 			pass
 	
@@ -311,7 +320,8 @@ func randomizebeginattacktimer():
 		BeginAttackTimer.wait_time = randi_range(0.1,beginattackmaxtime)
 		BeginAttackTimer.start()
 	else:
-		print("IDKIDKIDK")
+		pass
+		#print("IDKIDKIDK")
 
 
 func _on_detection_area_body_entered(body: Node2D) -> void:
@@ -325,6 +335,12 @@ func _on_detection_area_body_entered(body: Node2D) -> void:
 		dirtoplyr = self.global_position.direction_to(player.global_position)
 
 		changeattackdirdelaytimer.start()
+		
+		
+		if BeginAttackTimer.is_stopped():
+			BeginAttackTimer.start()
+			changeattackdirdelaytimer.start()
+
 	
 	
 	
@@ -335,14 +351,21 @@ func _on_detection_area_body_exited(body: Node2D) -> void:
 	
 	if body.is_in_group("Player"):
 		
-		body = null
+		player = null
 		
 		if state == Enemystates.Shoot:
 			
 			state = Enemystates.Idle
 			
 			pass
+		
+		#shootagain.stop()
+		#BeginAttackTimer.stop()
+		#changeattackdirdelaytimer.stop()
+		
 	
+
+
 	
 	pass # Replace with function body.
 
@@ -365,3 +388,15 @@ func _on_attack_delay_timeout() -> void:
 	if player != null:
 		dirtoplyr = self.global_position.direction_to(player.global_position)
 	pass # Replace with function body.
+
+
+func take_damage(damage : int):
+	
+	#if !shieldactive:
+	health -= damage
+	#else:
+		#pass
+	#
+	#
+	
+	pass

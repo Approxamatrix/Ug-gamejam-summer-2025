@@ -81,10 +81,10 @@ func actuallyfall():
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	
 	
-	if body.is_in_group("Player") and body.position.y < self.position.y:
+	if body.is_in_group("Player") and body.global_position.y < self.global_position.y:
 		falltimer.start()
 		animplayer.play("Shake")
-		
+		print("Player detected !!")
 		
 		
 		pass

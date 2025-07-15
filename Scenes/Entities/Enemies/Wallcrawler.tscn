@@ -9,14 +9,14 @@ size = Vector2(128, 66)
 [sub_resource type="CircleShape2D" id="CircleShape2D_apfxx"]
 radius = 408.02
 
-[node name="Wallcrawler" type="CharacterBody2D" node_paths=PackedStringArray("detectionarea", "wallray", "leftray", "rightray", "idletimer", "bullcooldown", "shootagain", "BeginAttackTimer", "changeattackdirdelaytimer", "dirchangecooldown")]
-collision_layer = 5
-collision_mask = 4
+[node name="Wallcrawler" type="CharacterBody2D" node_paths=PackedStringArray("detectionarea", "wallray", "leftray", "rightray", "idletimer", "bullcooldown", "shootagain", "BeginAttackTimer", "changeattackdirdelaytimer", "dirchangecooldown") groups=["Enemy"]]
+collision_layer = 4
+collision_mask = 5
 script = ExtResource("1_apfxx")
-health = 10
+health = 5
 wanderspeed = 50
 bulletlimit = 100
-bulletspeed = 4
+bulletspeed = 6
 detectionarea = NodePath("DetectionArea")
 wallray = NodePath("WallRay")
 walldist = 40
@@ -61,23 +61,26 @@ collision_layer = 2
 collision_mask = 2
 
 [node name="DetectionShape" type="CollisionShape2D" parent="DetectionArea"]
+position = Vector2(0, 321)
 shape = SubResource("CircleShape2D_apfxx")
 
 [node name="IdleTimer" type="Timer" parent="."]
-one_shot = true
-
-[node name="BulletCooldown" type="Timer" parent="."]
 wait_time = 2.0
 one_shot = true
 
+[node name="BulletCooldown" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
 [node name="ShootAgain" type="Timer" parent="."]
+wait_time = 0.1
 one_shot = true
 
 [node name="BeginAttack" type="Timer" parent="."]
 one_shot = true
 
 [node name="ChangeAttackDirDelay" type="Timer" parent="."]
-wait_time = 0.15
+wait_time = 0.05
 one_shot = true
 
 [connection signal="timeout" from="DirChangeTimer" to="." method="_on_dir_change_timer_timeout"]
