@@ -167,4 +167,4 @@ tile_map_data = PackedByteArray("AAC3/woAAAAEAAIAAAC3/wsAAAAEAAIAAAC3/wwAAAAEAAI
 tile_set = SubResource("TileSet_aok27")
 
 [node name="Wallcrawler" parent="." instance=ExtResource("4_bosm0")]
-position = Vector2(156, -74)
+position = Vector2(266, -62)

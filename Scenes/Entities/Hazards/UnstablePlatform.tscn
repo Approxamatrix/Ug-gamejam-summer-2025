@@ -53,7 +53,7 @@ colors = PackedColorArray(0.954458, 2.11775e-06, 9.62615e-07, 1, 1, 0.878431, 0,
 
 [node name="UnstablePlatform" type="CharacterBody2D" node_paths=PackedStringArray("sprite", "collision", "area", "falltimer", "respawntimer", "emitterleft", "emitterright", "animplayer")]
 position = Vector2(8, 0)
-collision_layer = 4
+collision_layer = 5
 collision_mask = 0
 motion_mode = 1
 script = ExtResource("1_m6dfj")

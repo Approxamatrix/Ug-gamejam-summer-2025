@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://c4nos475itjan"]
+[gd_scene load_steps=17 format=4 uid="uid://c4nos475itjan"]
 
 [ext_resource type="Texture2D" uid="uid://c6uir1mqtm15g" path="res://icon.svg" id="1_8sr5h"]
 [ext_resource type="PackedScene" uid="uid://ct6gyng3jmsu0" path="res://Scenes/Entities/Enemies/Ranger.tscn" id="2_ff37e"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://10hla38c1uxi" path="res://Scenes/Entities/Modules/UnlockDash.tscn" id="6_l56em"]
 [ext_resource type="Script" uid="uid://3gvuuhy0nnbn" path="res://Scripts/Entities/fake_player.gd" id="7_agkoq"]
 [ext_resource type="PackedScene" uid="uid://t20jlepxhm0y" path="res://Scenes/Entities/Enemies/Wallcrawler.tscn" id="8_ff37e"]
+[ext_resource type="Texture2D" uid="uid://ckvblg4h371ba" path="res://Sprites/Entities/Player/PlayerPlaceholder.png" id="9_l56em"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cmgem"]
 size = Vector2(2349, 128)
@@ -201,13 +202,14 @@ CameraoffsetY = -10
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(5110, -392)
 scale = Vector2(0.546875, 0.984375)
+zoom = Vector2(2, 2)
 process_callback = 0
 
 [node name="FakePlayer" type="Sprite2D" parent="." node_paths=PackedStringArray("player")]
 physics_interpolation_mode = 1
 position = Vector2(5110, -392)
-scale = Vector2(0.546875, 0.984375)
-texture = ExtResource("1_8sr5h")
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("9_l56em")
 script = ExtResource("7_agkoq")
 player = NodePath("../Player")
 metadata/_custom_type_script = "uid://3gvuuhy0nnbn"

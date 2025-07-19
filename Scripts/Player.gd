@@ -46,7 +46,7 @@ var shieldactive : bool
 
 @export var CameraoffsetY : int
 
-
+@export var CamMaxDistanceFromPlayer : float
 
 func _ready() -> void:
 	
@@ -428,7 +428,7 @@ func Cameramanager():
 		var distancefromplyr
 		distancefromplyr = abs(fakeplyr.position.y - Camera.position.y)
 		
-		if distancefromplyr >= 50:
+		if distancefromplyr >= CamMaxDistanceFromPlayer:
 			Camera.position.y = lerp(Camera.position.y, fakeplyr.position.y + CameraoffsetY,0.025)
 		
 		
@@ -446,6 +446,9 @@ func Cameramanager():
 
 
 func _physics_process(delta: float):
+	
+	
+	
 	
 	if Camera != null:
 		Cameramanager()

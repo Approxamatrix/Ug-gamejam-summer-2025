@@ -1,14 +1,17 @@
-res://Scenes/Entities/Enemies/Wallcrawler.tscn
-res://Scenes/Levels/Intro.tscn
-res://Scenes/Entities/Modules/UnlockBlaster.tscn
-res://Scenes/Entities/Modules/UnlockDash.tscn
 res://Scenes/Player.tscn
+res://Scripts/Player.gd
+res://Scenes/Levels/Intro.tscn
+res://Scenes/Entities/Enemies/Wallcrawler.tscn
 res://Scenes/Entities/Hazards/UnstablePlatform.tscn
-res://Scenes/Entities/Enemies/Ranger.tscn
-res://Scenes/Entities/Projectiles/Bullet.tscn
-res://Scenes/Entities/Projectiles/PlayerBullet.tscn
 res://Scenes/Levels/TestArea.tscn
-res://Scripts/Autoloads/game_autoload.gd
-res://Scripts/Entities/Enemies/Wallcrawler.gd
 res://Scenes/Entities/Projectiles/EnemyBullet.tscn
-res://Scripts/Entities/Bullets/player_bullet.gd
+res://Scenes/Entities/Projectiles/PlayerBullet.tscn
+res://Scripts/Entities/Enemies/Wallcrawler.gd
+res://Scripts/States/Basestate.gd
+res://Scripts/Entities/Enemies/Wallcrawler/WallcrawlerIdle.gd
+res://Scripts/Statemachine stuff/StateManager.gd
+res://Scripts/Statemachine stuff/Basestate.gd
+res://Scripts/Entities/Enemies/Wallcrawler/WallcrawlerWander.gd
+res://Scenes/Entities/Enemies/Ranger.tscn
+res://Scripts/Entities/fake_player.gd
+res://Scripts/Entities/Enemies/Wallcrawler/WallcrawlerShoot.gd

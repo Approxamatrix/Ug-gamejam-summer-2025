@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://c6uir1mqtm15g" path="res://icon.svg" id="2_it8n0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gbyq6"]
-size = Vector2(70, 125)
+size = Vector2(62, 116)
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("jumptimer", "dashtimer", "shieldtimer", "stuntimer", "healthlabel") groups=["Player"]]
 physics_interpolation_mode = 1
@@ -23,6 +23,7 @@ stuntimer = NodePath("StunTimer")
 bulletlimit = 3
 healthlabel = NodePath("Control/Label")
 CameraoffsetY = 20
+CamMaxDistanceFromPlayer = 150.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 visible = false
