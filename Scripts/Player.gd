@@ -6,6 +6,8 @@ enum PlayerState {Idle,Walk,Fall,Jump,Stun,Dead}
 
 @export var health : int
 
+@export var healthbar : ProgressBar
+
 var state : PlayerState
 
 @export var gravity : float
@@ -42,13 +44,16 @@ var shieldactive : bool
 
 @export var Camera : Camera2D
 
-@export var fakeplyr : FakePlayer
+@export var PlyrSprite : Sprite2D
+
+#@export var fakeplyr : Sprite2D
 
 @export var CameraoffsetY : int
 
 @export var CamMaxDistanceFromPlayer : float
 
 func _ready() -> void:
+	
 	
 	state = PlayerState.Idle
 	
@@ -61,6 +66,8 @@ func _ready() -> void:
 	
 	GameAutoload.DecreasePlyrBulletCounter.connect(decrementbulletcounter)
 	
+	SepSpriteandCam()
+
 	
 	pass
 
@@ -417,29 +424,28 @@ func take_damage(damage : int):
 	
 	pass
 
-
-func Cameramanager():
+func SepSpriteandCam():
 	
-	Camera.position.x =  fakeplyr.position.x
-	
-	if is_on_floor():
-		Camera.position.y = lerp(Camera.position.y,fakeplyr.position.y + CameraoffsetY ,0.25)
+	if PlyrSprite != null:
+		#PlyrSprite.reparent(self.get_parent())
 		
-	if !is_on_floor():
+		PlyrSprite.reparent.call_deferred(self.get_parent())
+		#
+		#self.remove_child(PlyrSprite)
+		#self.get_parent().get_parent().add_child.call_deferred(PlyrSprite)
 		
-		var distancefromplyr
-		distancefromplyr = abs(fakeplyr.position.y - Camera.position.y)
-		
-		if distancefromplyr >= CamMaxDistanceFromPlayer:
-			Camera.position.y = lerp(Camera.position.y, fakeplyr.position.y + CameraoffsetY,0.025)
-		
-		
-		
-		
-		
-		
-		
+	else:
 		pass
+	
+	if Camera != null:
+		#Camera.reparent(self.get_parent())
+				#self.remove_child(Camera)
+				#self.get_parent().get_parent().add_child.call_deferred(Camera)
+				
+		Camera.reparent.call_deferred(self.get_parent())
+
+
+	#position = lerp(position,self.global_position,0.5)
 	
 	
 	
@@ -447,19 +453,63 @@ func Cameramanager():
 
 
 
-func _physics_process(delta: float):
-	
-	
-	
+func Cameramanager():
 	
 	if Camera != null:
-		Cameramanager()
-		pass
+		Camera.position.x =  PlyrSprite.position.x
 		
+		if is_on_floor():
+			Camera.position.y = lerp(Camera.position.y,PlyrSprite.position.y + CameraoffsetY ,0.25)
+			
+		if !is_on_floor():
+			
+			var distancefromplyr
+			distancefromplyr = abs(PlyrSprite.position.y - Camera.position.y)
+			
+			if distancefromplyr >= CamMaxDistanceFromPlayer:
+				Camera.position.y = lerp(Camera.position.y, PlyrSprite.position.y + CameraoffsetY,0.025)
+			
+			
+			
+			
+			
+			
+			
+			pass
 	else:
-		print("Error ! Player has no assigned camera !!")
+		print("Camera doesn't exist !")
+		
 	
-	healthlabel.text = "Health : " + str(health)
+	pass
+
+func SpriteLogic():
+	
+	PlyrSprite.global_position = lerp(PlyrSprite.global_position,self.global_position,0.5)
+	
+	
+	if facingdir <= -1:
+		PlyrSprite.flip_h = true
+		pass
+	else:
+		PlyrSprite.flip_h = false
+	pass
+
+func _physics_process(delta: float):
+	SpriteLogic()
+	Cameramanager()
+
+	
+	#
+	#
+	#if Camera != null:
+		#
+		#pass
+		#
+	#else:
+		#print("Error ! Player has no assigned camera !!")
+	
+	#healthlabel.text = "Health : " + str(health)
+	healthbar.value = health * 5
 	
 	#print(" State :" + var_to_str(state))
 	if state != PlayerState.Dead :

@@ -1,17 +1,18 @@
 [gd_scene load_steps=4 format=3 uid="uid://cj3vm8nx1o1jj"]
 
 [ext_resource type="Script" uid="uid://daophsysguk0e" path="res://Scripts/Player.gd" id="1_88kja"]
-[ext_resource type="Texture2D" uid="uid://c6uir1mqtm15g" path="res://icon.svg" id="2_it8n0"]
+[ext_resource type="Texture2D" uid="uid://ckvblg4h371ba" path="res://Sprites/Entities/Player/PlayerPlaceholder.png" id="2_kyqiw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gbyq6"]
 size = Vector2(62, 116)
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("jumptimer", "dashtimer", "shieldtimer", "stuntimer", "healthlabel") groups=["Player"]]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("healthbar", "jumptimer", "dashtimer", "shieldtimer", "stuntimer", "healthlabel", "Camera", "PlyrSprite") groups=["Player"]]
 physics_interpolation_mode = 1
 collision_layer = 2
 collision_mask = 3
 script = ExtResource("1_88kja")
 health = 10
+healthbar = NodePath("Camera2D/Control/CanvasLayer/MarginContainer/ProgressBar")
 gravity = 4.5
 basejumpheight = 210.0
 walkspeed = 400.0
@@ -21,15 +22,16 @@ dashtimer = NodePath("DashTimer")
 shieldtimer = NodePath("ShieldTimer")
 stuntimer = NodePath("StunTimer")
 bulletlimit = 3
-healthlabel = NodePath("Control/Label")
+healthlabel = NodePath("")
+Camera = NodePath("Camera2D")
+PlyrSprite = NodePath("Sprite2D")
 CameraoffsetY = 20
 CamMaxDistanceFromPlayer = 150.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-visible = false
 position = Vector2(0, 1)
-scale = Vector2(0.546875, 0.984375)
-texture = ExtResource("2_it8n0")
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("2_kyqiw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 0.5)
@@ -47,26 +49,35 @@ one_shot = true
 wait_time = 1.5
 one_shot = true
 
-[node name="Control" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="Label" type="Label" parent="Control"]
-visible = false
-layout_mode = 1
-anchors_preset = -1
-anchor_left = -2.462
-anchor_top = -2.412
-anchor_right = -2.462
-anchor_bottom = -2.412
-offset_left = -51.52
-offset_top = -11.52
-offset_right = 51.48
-offset_bottom = 11.48
-text = "Health : "
-
 [node name="StunTimer" type="Timer" parent="."]
 wait_time = 0.7
 one_shot = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Control" type="Control" parent="Camera2D"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Camera2D/Control"]
+
+[node name="MarginContainer" type="MarginContainer" parent="Camera2D/Control/CanvasLayer"]
+anchors_preset = -1
+anchor_top = 0.043
+anchor_right = 0.309
+anchor_bottom = 1.0
+offset_top = -1.864
+offset_right = 0.0319824
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="Camera2D/Control/CanvasLayer/MarginContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.232263, 0.158507, 4.81308e-08, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 40
