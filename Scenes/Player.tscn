@@ -9,12 +9,12 @@ size = Vector2(62, 116)
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("jumptimer", "dashtimer", "shieldtimer", "stuntimer", "healthlabel") groups=["Player"]]
 physics_interpolation_mode = 1
 collision_layer = 2
-collision_mask = 7
+collision_mask = 3
 script = ExtResource("1_88kja")
 health = 10
 gravity = 4.5
 basejumpheight = 210.0
-walkspeed = 500.0
+walkspeed = 400.0
 runspeed = 800.0
 jumptimer = NodePath("JumpTimer")
 dashtimer = NodePath("DashTimer")
@@ -68,5 +68,5 @@ offset_bottom = 11.48
 text = "Health : "
 
 [node name="StunTimer" type="Timer" parent="."]
-wait_time = 1.5
+wait_time = 0.7
 one_shot = true

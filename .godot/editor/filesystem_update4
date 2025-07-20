@@ -1,17 +1,11 @@
-res://Scenes/Player.tscn
-res://Scripts/Player.gd
+res://Scenes/Entities/Enemies/Ranger.tscn
+res://Scripts/Entities/Enemies/Ranger.gd
 res://Scenes/Levels/Intro.tscn
 res://Scenes/Entities/Enemies/Wallcrawler.tscn
-res://Scenes/Entities/Hazards/UnstablePlatform.tscn
 res://Scenes/Levels/TestArea.tscn
+res://Scenes/Player.tscn
 res://Scenes/Entities/Projectiles/EnemyBullet.tscn
 res://Scenes/Entities/Projectiles/PlayerBullet.tscn
-res://Scripts/Entities/Enemies/Wallcrawler.gd
-res://Scripts/States/Basestate.gd
-res://Scripts/Entities/Enemies/Wallcrawler/WallcrawlerIdle.gd
-res://Scripts/Statemachine stuff/StateManager.gd
-res://Scripts/Statemachine stuff/Basestate.gd
-res://Scripts/Entities/Enemies/Wallcrawler/WallcrawlerWander.gd
-res://Scenes/Entities/Enemies/Ranger.tscn
-res://Scripts/Entities/fake_player.gd
-res://Scripts/Entities/Enemies/Wallcrawler/WallcrawlerShoot.gd
+res://Scenes/Entities/Hazards/UnstablePlatform.tscn
+res://Scripts/Player.gd
+res://Scripts/Autoloads/game_autoload.gd

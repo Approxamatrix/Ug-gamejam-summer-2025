@@ -1,0 +1,13 @@
+res://Scenes/Entities/Enemies/Ranger.tscn::91560979b6476dc8ac4e9a2e73392616::1752969614::res://.godot/exported/133200997/export-4d853870bd9b49b95fbcd0412ac4de61-Ranger.scn
+res://Scenes/Entities/Enemies/Wallcrawler.tscn::8630915be4f59f2076051c726ee31174::1752969614::res://.godot/exported/133200997/export-742e04cb289bbf38c179e69e53a70f0f-Wallcrawler.scn
+res://Scenes/Entities/Hazards/SpikeTile.tscn::d7d0b509fa178e74585356bce09eae26::1751757352::res://.godot/exported/133200997/export-5496e154ae892d713693c99c01ca66eb-SpikeTile.scn
+res://Scenes/Entities/Hazards/UnstablePlatform.tscn::673e781baa7be7f2f4b9aea0268ae8dd::1752969615::res://.godot/exported/133200997/export-802505512d68a7af082adbc7736efbdc-UnstablePlatform.scn
+res://Scenes/Entities/Modules/UnlockBlaster.tscn::0e47bd2a24aa8462fb063b53196052a2::1752079802::res://.godot/exported/133200997/export-15b1b0c5ec4d08b5be788aa552853fcf-UnlockBlaster.scn
+res://Scenes/Entities/Modules/UnlockDash.tscn::4e920e3555b8e21fd96db2b18d047dae::1752079704::res://.godot/exported/133200997/export-1123bd8493de8fb16c83bc23c6ff9cc5-UnlockDash.scn
+res://Scenes/Entities/Projectiles/Bullet.tscn::272b8c97f4743b5033b2fc61bcb5da73::1751943394::res://.godot/exported/133200997/export-fb770d21c340d68edbf8ab16d78cb078-Bullet.scn
+res://Scenes/Entities/Projectiles/EnemyBullet.tscn::65655cc2daa40324af358a575f5e8854::1752969614::res://.godot/exported/133200997/export-1c76ed41f919827f2cec68d9220bd213-EnemyBullet.scn
+res://Scenes/Entities/Projectiles/PlayerBullet.tscn::9484ee9d8848c648db72bdd1442b6164::1752969614::res://.godot/exported/133200997/export-6652831753cd1d13c53e407ccd07b4f2-PlayerBullet.scn
+res://Scenes/Entities/FakePlayer.tscn::19587c922235b69c7fec384250efea7d::1751781429::res://.godot/exported/133200997/export-857ec8e965bef5b3fb70f59e94721abb-FakePlayer.scn
+res://Scenes/Levels/Intro.tscn::2cdabc47564c97350903b900c4938a52::1752969675::res://.godot/exported/133200997/export-a026da36d5e2b1c9e57a415e9a969d07-Intro.scn
+res://Scenes/Levels/TestArea.tscn::ffb4ef8d84fa05bb9f3a029aefda507c::1752969614::res://.godot/exported/133200997/export-97157803a5c0f06150fd5ec6be49015f-TestArea.scn
+res://Scenes/Player.tscn::61473c410558d2fb3962f02f9ffed116::1752969614::res://.godot/exported/133200997/export-a7209d3b864edc0146622aad500fa2c1-Player.scn

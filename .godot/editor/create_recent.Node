@@ -1,3 +1,4 @@
+ShapeCast2D
 WallcrawlerShoot
 WallcrawlerWander
 WallcrawlerIdle
@@ -11,5 +12,3 @@ TileMapLayer
 RayCast2D
 CharacterBody2D
 CPUParticles2D
-GPUParticles2D
-Camera2D

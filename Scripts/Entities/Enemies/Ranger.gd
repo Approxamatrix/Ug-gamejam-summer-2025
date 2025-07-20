@@ -10,6 +10,8 @@ enum Enemystates {Idle, Wander, Shoot, Die}
 
 var state : Enemystates
 
+@export var sprite : Sprite2D
+
 @export var health : int
 
 @export var targetrange : int
@@ -20,7 +22,7 @@ var state : Enemystates
 
 @export var rightray : RayCast2D
 
-@export var detectorray : RayCast2D
+@export var detectorray : ShapeCast2D
 
 var currbullets = 0
 
@@ -40,7 +42,7 @@ var bulletscene = preload("res://Scenes/Entities/Projectiles/EnemyBullet.tscn")
 
 @export var idletimer : Timer
 
-@export var wallray : RayCast2D
+@export var wallray : ShapeCast2D
 
 @export var walldist : int
 
@@ -190,7 +192,7 @@ func wander():
 		dirchangecooldown.start()
 		
 	
-	if wallray.is_colliding() and wallray.get_collider().is_in_group("Enemy") :
+	if wallray.is_colliding() and wallray.get_collider(0).is_in_group("Enemy") :
 		
 		wanderdir *= -1
 		pass
@@ -252,6 +254,15 @@ func shootenemy():
 		
 
 func  _physics_process(delta: float) -> void:
+	
+	
+	if facingdir <= -1:
+		
+		sprite.flip_h = true
+		
+		pass
+	else:
+		sprite.flip_h = false
 	
 	EnemyStateManager()
 	

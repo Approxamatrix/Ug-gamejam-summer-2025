@@ -269,6 +269,7 @@ func PlyrStateManager():
 					pass
 				else:
 					state = PlayerState.Idle
+					pass
 				pass
 				
 				
@@ -276,9 +277,10 @@ func PlyrStateManager():
 					
 				if is_on_floor():
 					
-					state = PlayerState.Idle
+					#state = PlayerState.Idle
 					pass
-				else:
+					pass
+				if !is_on_floor():
 					velocity.y += gravity * 10
 					
 					#velocity.y = 0
