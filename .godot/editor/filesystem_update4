@@ -6,4 +6,3 @@ res://Scenes/Entities/Projectiles/EnemyBullet.tscn
 res://Scenes/Entities/Projectiles/PlayerBullet.tscn
 res://Scenes/Entities/Enemies/Ranger.tscn
 res://Scenes/Entities/Hazards/UnstablePlatform.tscn
-res://Scripts/Player.gd
