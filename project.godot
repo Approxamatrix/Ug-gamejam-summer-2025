@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="Platformer Shooter game thing uhhh idk lmao"
+config/name="Time Trapped"
 run/main_scene="uid://c4nos475itjan"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"

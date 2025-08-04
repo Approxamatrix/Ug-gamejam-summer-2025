@@ -259,6 +259,7 @@ func PlyrStateManager():
 			
 			velocity = Vector2.ZERO
 			
+			get_tree().reload_current_scene()
 			
 			
 			
