@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="DialogueList" load_steps=5 format=3 uid="uid://boqdw0xuhkpnj"]
+
+[ext_resource type="Script" uid="uid://ducvtw25wxdij" path="res://Scripts/ResourceBases/DialogueList.gd" id="1_eheyg"]
+[ext_resource type="Script" uid="uid://dqpsrmh38rtd4" path="res://Scripts/ResourceBases/Dialogue.gd" id="1_l4hfo"]
+
+[sub_resource type="Resource" id="Resource_8hejq"]
+script = ExtResource("1_l4hfo")
+CurrentCharTalking = "Test"
+TalkText = "When the imposter is sus !!!"
+metadata/_custom_type_script = "uid://dqpsrmh38rtd4"
+
+[sub_resource type="Resource" id="Resource_l4hfo"]
+script = ExtResource("1_l4hfo")
+CurrentCharTalking = "Test2"
+TalkText = "This might be the second item in the DialogList, perchance..."
+metadata/_custom_type_script = "uid://dqpsrmh38rtd4"
+
+[resource]
+script = ExtResource("1_eheyg")
+Dialogue = Array[ExtResource("1_l4hfo")]([SubResource("Resource_8hejq"), SubResource("Resource_l4hfo")])
+metadata/_custom_type_script = "uid://ducvtw25wxdij"

@@ -25,7 +25,7 @@ bulletlimit = 3
 Camera = NodePath("Camera2D")
 PlyrSprite = NodePath("Sprite2D")
 CameraoffsetY = 20
-CamMaxDistanceFromPlayer = 150.0
+CamMaxDistanceFromPlayer = 200.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, 1)

@@ -1,9 +1,14 @@
+res://Scenes/Levels/TestArea.tscn
+res://Resources/Dialogue/TestDialogue.tres
+res://Scripts/Entities/Enemies/Wallcrawler.gd
 res://Scenes/Levels/Intro.tscn
 res://Scenes/Entities/Enemies/Wallcrawler.tscn
-res://Scenes/Levels/TestArea.tscn
 res://Scenes/Player.tscn
 res://Scenes/Entities/Projectiles/EnemyBullet.tscn
 res://Scenes/Entities/Projectiles/PlayerBullet.tscn
 res://Scenes/Entities/Enemies/Ranger.tscn
 res://Scenes/Entities/Hazards/UnstablePlatform.tscn
-res://Scripts/Player.gd
+res://Scenes/Dialoguetest.tscn
+res://Scripts/Entities/Enemies/Wallcrawler/WallcrawlerWander.gd
+res://Scripts/Entities/Enemies/Wallcrawler/WallcrawlerShoot.gd
+res://Scripts/Entities/Enemies/Wallcrawler/WallcrawlerIdle.gd

@@ -1,0 +1,2 @@
+CharacterTalkingTemplate
+DialogueList

@@ -7,10 +7,15 @@ func enter():
 	
 	print("Shoot")
 	
+	enemyobj.AttackDelayTimer.start()
+	
+	enemyobj.velocity = Vector2.ZERO
+	
 	pass
 
 func shootenemy():
 	#print("POW !")
+	enemyobj.velocity.x = 0
 	if enemyobj.player != null:
 	#if currbullets < bulletlimit:
 		var bullet = enemyobj.bulletscene.instantiate()
@@ -23,18 +28,9 @@ func shootenemy():
 		print(enemyobj.dirtoplyr)
 		enemyobj.currbullets += 1
 		
-		if enemyobj.changeattackdirdelaytimer.is_stopped():
-			#print("AAAAAAAAAAAAAdddddddd")
-			enemyobj.changeattackdirdelaytimer.start()
-		
-		#BeginAttackTimer.start()
-		
-		enemyobj.randomizebeginattacktimer()
-		
 		StateChangeSignal.emit("WallcrawlerWander")
 		
 			
-			#dirtoplyr = self.global_position.direction_to(player.global_position)
 
 		
 	else:
@@ -46,34 +42,13 @@ func update():
 	
 	enemyobj.velocity.x = 0
 	
-
-
-	if enemyobj.player != null:
-		
-		
-		
-		if enemyobj.bullcooldown.is_stopped() and enemyobj.shootagain.is_stopped():
-			
-			
-			if enemyobj.shootdelay.is_stopped():
-				#shootenemy()
-				#velocity.x = 0
-				print("velocity:")
-				print(enemyobj.velocity.x)
-				enemyobj.shootdelay.start()
-			enemyobj.bullcooldown.start()
-			
-			
-			
-			
-		#if currbullets >= bulletlimit:
-			
-		if enemyobj.shootagain.is_stopped():
-			
-			enemyobj.shootagain.start()
+	if enemyobj.player == null:
+		pass
+	else:
+		if enemyobj.AttackDelayTimer.is_stopped():
+			shootenemy()
 			pass
-		
-			pass
+		pass
 	
 
 	
@@ -81,15 +56,8 @@ func update():
 
 
 
-func randomizebeginattacktimer():
-	#if idletimer.is_stopped():
-	if enemyobj.BeginAttackTimer.is_stopped():
-		enemyobj.BeginAttackTimer.wait_time = randi_range(0.5,enemyobj.beginattackmaxtime)
-		enemyobj.BeginAttackTimer.start()
-	else:
-		pass
-
 func exit():
-	
+	print("exiting shooting state")
+	enemyobj.AttackCooldownTimer.start()
 	enemyobj.currbullets = 0
 	pass

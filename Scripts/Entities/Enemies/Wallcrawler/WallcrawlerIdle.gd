@@ -1,14 +1,12 @@
 extends Basestate
 class_name WallcrawlerIdle
 
-
+#NOTE : This is basically a reset state. Don't bother with adding much (or any) funcitonality here !
 @export var enemyobj : Wallcrawler
 
 func enter():
 	
-	if  enemyobj.idletimer.is_stopped():
-				enemyobj.idletimer.start()
-			
+	
 	print("idling")
 	
 	pass
@@ -16,13 +14,6 @@ func enter():
 func update():
 	
 	enemyobj.velocity.x = 0
-			
-	if enemyobj.detectionarea.has_overlapping_bodies():
-		
-		pass
-		
-			
-	
 	
 	StateChangeSignal.emit("WallcrawlerWander")
 	

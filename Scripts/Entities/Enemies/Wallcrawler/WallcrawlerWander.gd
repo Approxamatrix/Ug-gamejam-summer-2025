@@ -13,10 +13,10 @@ func enter():
 
 func wander():
 	
-	## add a timer which has a cooldown on how when the wanderdir can change
 	
-	if enemyobj.dirchangecooldown.is_stopped():
-		#wanderdir = randi_range(-1,1)
+	if enemyobj.DirChangeCooldown.is_stopped():
+		
+		enemyobj.DirChangeCooldown.wait_time = randi_range(3,10)
 		
 		if enemyobj.wanderdir == 0 and enemyobj.facingdir != 0:
 			enemyobj.wanderdir = enemyobj.facingdir
@@ -27,8 +27,9 @@ func wander():
 		if enemyobj.wanderdir == enemyobj.facingdir:
 			#wanderdir = wanderdir * -1
 			pass
+			
+		enemyobj.wanderdir = enemyobj.wanderdir * -1
 		
-		enemyobj.dirchangecooldown.start()
 		
 	
 	if enemyobj.wallray.is_colliding() and enemyobj.wallray.get_collider().is_in_group("Enemy") :
@@ -37,8 +38,6 @@ func wander():
 		pass
 	
 	if (enemyobj.rightray.is_colliding() and !enemyobj.leftray.is_colliding() ) or (enemyobj.wallray.is_colliding() and enemyobj.wallray.target_position.x < -1 ):
-	 
-		StateChangeSignal.emit("WallcrawlerIdle")
 		
 		enemyobj.wanderdir = 1
 		
@@ -47,32 +46,21 @@ func wander():
 	if ( enemyobj.leftray.is_colliding() and !enemyobj.rightray.is_colliding() ) or (enemyobj.wallray.is_colliding() and enemyobj.wallray.target_position.x > 1 ):
 
 		#velocity.x = 0
-		
-		StateChangeSignal.emit("WallcrawlerIdle")
-
-		
+	
 		enemyobj.wanderdir = -1
 
-	#if !leftray.is_colliding() and !rightray.is_colliding():
-#
-		#wanderdir = 0
-		#pass
-	
-	
-	#detectorray.target_position.x = targetrange * facingdir
+
 	
 	enemyobj.wallray.target_position.x = enemyobj.walldist * enemyobj.facingdir
 
-	#wanderspeed = randi_range(0,maxwanderrange)
 
 	var wanderpos = Vector2(enemyobj.wanderdir * enemyobj.wanderspeed,0)
 
-#
-	#if spawnpoint.distance_to(wanderpos) > maxwanderrange:
-		#wanderpos.x = wanderpos.x / maxwanderrange
+
 
 
 	enemyobj.velocity.x = wanderpos.x
+	
 
 
 func _on_dir_change_timer_timeout() -> void:
@@ -85,6 +73,27 @@ func _on_dir_change_timer_timeout() -> void:
 	
 	pass # Replace with function body.
 
+
+func _on_begin_attack_timeout() -> void:
+	pass
+	#if enemyobj.idletimer.is_stopped():
+		#
+		#if enemyobj.player != null:
+			#print("attack starts now !!")
+			##currbullets = 0
+			#print("currbullets" + str(enemyobj.currbullets))
+			#StateChangeSignal.emit("WallcrawlerShoot")
+			#
+			#
+			#
+			#pass
+	#else:
+		#
+		#
+		#pass
+		#pass # Replace with function body.
+
+
 func update():
 	
 	
@@ -95,34 +104,12 @@ func update():
 	#print("wandering")
 	#if stopwandering.is_stopped():
 	wander()
-		#stopwandering.start()
 	
-	if enemyobj.detectionarea.has_overlapping_bodies(): 
+	#print(enemyobj.wanderdir)
+	
+	if enemyobj.player and enemyobj.AttackCooldownTimer.is_stopped():
+		StateChangeSignal.emit("WallcrawlerShoot")
 		pass
-		
-		
-	if enemyobj.player != null:
-		#randomizebeginattacktimer()
-		pass
-	
-	if enemyobj.player == null:
-		enemyobj.BeginAttackTimer.stop()
-		
-	
-	
-	enemyobj.facingdir = enemyobj.wanderdir
-			
-			
-	if enemyobj.detectionarea.has_overlapping_bodies(): 
-		pass
-		
-		
-	if enemyobj.player != null:
-		#randomizebeginattacktimer()
-		pass
-	
-	if enemyobj.player == null:
-		enemyobj.BeginAttackTimer.stop()
 	
 	pass
 	

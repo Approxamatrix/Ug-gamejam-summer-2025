@@ -1,0 +1,63 @@
+[gd_scene load_steps=4 format=3 uid="uid://cohgndvqlweq2"]
+
+[ext_resource type="Script" uid="uid://dprkhnmusgahy" path="res://Scenes/DialogBox.gd" id="1_x1g0k"]
+[ext_resource type="Resource" uid="uid://boqdw0xuhkpnj" path="res://Resources/Dialogue/TestDialogue.tres" id="2_51mcq"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3c5b4"]
+bg_color = Color(0.027451, 0.215686, 0.376471, 0.576471)
+
+[node name="Container" type="Control" node_paths=PackedStringArray("TextTimer", "DialogLabel", "CharLabel")]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_x1g0k")
+TextTimer = NodePath("TextTimer")
+DialogLabel = NodePath("Panel/DialogText")
+CharLabel = NodePath("Panel/CharCurrentlyTalking")
+DialogFile = ExtResource("2_51mcq")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 2
+anchor_left = -9.75
+anchor_top = 4.475
+anchor_right = 10.25
+anchor_bottom = 7.525
+theme_override_styles/panel = SubResource("StyleBoxFlat_3c5b4")
+metadata/_edit_use_anchors_ = true
+
+[node name="DialogText" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.02
+anchor_top = 0.07
+anchor_right = 0.9825
+anchor_bottom = 0.685
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+text = "Test"
+metadata/_edit_use_anchors_ = true
+
+[node name="CharCurrentlyTalking" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = -0.220164
+anchor_right = 0.245
+anchor_bottom = -0.0316393
+text = "Test"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="TextTimer" type="Timer" parent="."]
+process_callback = 0
+wait_time = 0.04
+
+[connection signal="timeout" from="TextTimer" to="." method="slowprint"]

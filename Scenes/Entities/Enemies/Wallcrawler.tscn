@@ -13,11 +13,12 @@ size = Vector2(128, 66)
 [sub_resource type="CircleShape2D" id="CircleShape2D_apfxx"]
 radius = 408.02
 
-[node name="Wallcrawler" type="CharacterBody2D" node_paths=PackedStringArray("statemanager", "detectionarea", "wallray", "leftray", "rightray", "idletimer", "bullcooldown", "shootagain", "BeginAttackTimer", "changeattackdirdelaytimer", "dirchangecooldown", "shootdelay") groups=["Enemy"]]
+[node name="Wallcrawler" type="CharacterBody2D" node_paths=PackedStringArray("statemanager", "statelabel", "detectionarea", "wallray", "leftray", "rightray", "DirChangeCooldown", "IdleTimer", "AttackCooldownTimer", "AttackDelayTimer") groups=["Enemy"]]
 collision_layer = 4
 collision_mask = 5
 script = ExtResource("1_apfxx")
 statemanager = NodePath("StateManager")
+statelabel = NodePath("Label")
 health = 5
 wanderspeed = 50
 bulletlimit = 100
@@ -27,14 +28,19 @@ wallray = NodePath("WallRay")
 walldist = 40
 leftray = NodePath("LeftRay")
 rightray = NodePath("RightRay")
-idletimer = NodePath("IdleTimer")
-bullcooldown = NodePath("BulletCooldown")
-shootagain = NodePath("ShootAgain")
-BeginAttackTimer = NodePath("BeginAttack")
 beginattackmaxtime = 5.0
-changeattackdirdelaytimer = NodePath("ChangeAttackDirDelay")
-dirchangecooldown = NodePath("DirChangeTimer")
-shootdelay = NodePath("ShootDelay")
+DirChangeCooldown = NodePath("DirChangeCooldown")
+IdleTimer = NodePath("IdleTimer")
+AttackCooldownTimer = NodePath("AttackCooldown")
+AttackDelayTimer = NodePath("AttackDelayTimer")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -18.0
+offset_top = 6.0
+offset_right = 22.0
+offset_bottom = 29.0
+text = "State"
+metadata/_edit_use_anchors_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -31)
@@ -49,10 +55,6 @@ target_position = Vector2(0, -100)
 [node name="RightRay" type="RayCast2D" parent="."]
 position = Vector2(70, 0)
 target_position = Vector2(0, -100)
-
-[node name="DirChangeTimer" type="Timer" parent="."]
-wait_time = 15.0
-one_shot = true
 
 [node name="WallRay" type="RayCast2D" parent="."]
 position = Vector2(0, -30.14)
@@ -70,37 +72,9 @@ collision_mask = 2
 position = Vector2(0, 321)
 shape = SubResource("CircleShape2D_apfxx")
 
-[node name="IdleTimer" type="Timer" parent="."]
-wait_time = 3.0
-one_shot = true
-
-[node name="BulletCooldown" type="Timer" parent="."]
-wait_time = 0.1
-one_shot = true
-
-[node name="ShootAgain" type="Timer" parent="."]
-wait_time = 2.0
-one_shot = true
-
-[node name="BeginAttack" type="Timer" parent="."]
-one_shot = true
-
-[node name="ChangeAttackDirDelay" type="Timer" parent="."]
-wait_time = 0.05
-one_shot = true
-
-[node name="ShootDelay" type="Timer" parent="."]
-wait_time = 3.5
-one_shot = true
-
 [node name="StateManager" type="Node" parent="."]
 script = ExtResource("3_rdfpu")
 metadata/_custom_type_script = "uid://yss4o384w3rj"
-
-[node name="WallcrawlerIdle" type="Node" parent="StateManager" node_paths=PackedStringArray("enemyobj")]
-script = ExtResource("4_rg38e")
-enemyobj = NodePath("../..")
-metadata/_custom_type_script = "uid://0vmrq8n3y8gm"
 
 [node name="WallcrawlerWander" type="Node" parent="StateManager" node_paths=PackedStringArray("enemyobj")]
 script = ExtResource("5_ktrwj")
@@ -112,9 +86,24 @@ script = ExtResource("6_ktrwj")
 enemyobj = NodePath("../..")
 metadata/_custom_type_script = "uid://csv4sy8cj8o8x"
 
-[connection signal="timeout" from="DirChangeTimer" to="StateManager/WallcrawlerWander" method="_on_dir_change_timer_timeout"]
+[node name="WallcrawlerIdle" type="Node" parent="StateManager" node_paths=PackedStringArray("enemyobj")]
+script = ExtResource("4_rg38e")
+enemyobj = NodePath("../..")
+metadata/_custom_type_script = "uid://0vmrq8n3y8gm"
+
+[node name="IdleTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="DirChangeCooldown" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[node name="AttackCooldown" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[node name="AttackDelayTimer" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="DetectionArea" to="." method="_on_detection_area_body_exited"]
-[connection signal="timeout" from="ShootAgain" to="." method="_on_shoot_again_timeout"]
-[connection signal="timeout" from="BeginAttack" to="." method="_on_begin_attack_timeout"]
-[connection signal="timeout" from="ChangeAttackDirDelay" to="." method="change_attack_dir_timeout"]

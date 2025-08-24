@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="CharacterTalkingTemplate" load_steps=2 format=3 uid="uid://bh4j148kf3sm3"]
+
+[ext_resource type="Script" uid="uid://da0rah8ijqlow" path="res://Scripts/ResourceBases/CharacterTalkingTemplate.gd" id="1_oy0q7"]
+
+[resource]
+script = ExtResource("1_oy0q7")
+TalkName = "Test"
+metadata/_custom_type_script = "uid://da0rah8ijqlow"
