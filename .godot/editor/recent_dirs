@@ -1,3 +1,5 @@
+res://Sprites/Tiles/Intro/Foreground
+res://Resources/Tilesets
 res://Scenes
 res://Resources/Dialogue/CurrenCharacterTalking/
 res://Resources/Dialogue/
@@ -11,5 +13,4 @@ res://Scenes/Entities/Enemies
 res://Scripts/Entities
 res://Scripts/Hazards
 res://Scenes/Entities/Hazards
-res://Sprites/Tiles/Intro/Foreground
 res://Scripts/Entities/Bullets
