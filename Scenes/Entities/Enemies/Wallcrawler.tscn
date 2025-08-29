@@ -22,7 +22,7 @@ statelabel = NodePath("Label")
 health = 5
 wanderspeed = 50
 bulletlimit = 100
-bulletspeed = 6
+bulletspeed = 4
 detectionarea = NodePath("DetectionArea")
 wallray = NodePath("WallRay")
 walldist = 40
@@ -99,10 +99,11 @@ wait_time = 3.0
 autostart = true
 
 [node name="AttackCooldown" type="Timer" parent="."]
-wait_time = 5.0
+wait_time = 3.0
 one_shot = true
 
 [node name="AttackDelayTimer" type="Timer" parent="."]
+wait_time = 0.5
 one_shot = true
 
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]

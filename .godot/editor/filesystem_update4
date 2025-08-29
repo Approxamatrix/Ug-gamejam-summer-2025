@@ -1,10 +1,8 @@
-res://Scenes/Player.tscn
 res://Resources/Dialogue/TestDialogue.tres
-res://Resources/VisualShaders/DamageFlash.res
+res://Scenes/Entities/Doors/BaseDoor/Door.tscn
 res://Scenes/Levels/Intro.tscn
 res://Scenes/Dialoguetest.tscn
 res://Scenes/Entities/Enemies/Wallcrawler.tscn
 res://Scenes/Entities/Enemies/Ranger.tscn
-res://Scripts/Player.gd
-res://Scripts/Entities/Enemies/Ranger.gd
-res://Scripts/Entities/Enemies/Wallcrawler.gd
+res://Scripts/Entities/Enemies/Wallcrawler/WallcrawlerShoot.gd
+res://Scenes/Levels/CommandCenter.tscn

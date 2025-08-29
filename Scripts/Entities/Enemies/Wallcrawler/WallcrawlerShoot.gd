@@ -22,7 +22,7 @@ func shootenemy():
 		self.get_parent().add_child(bullet)
 		bullet.global_position.x = enemyobj.global_position.x + (enemyobj.bulletoffset * enemyobj.global_position.direction_to(enemyobj.player.global_position).x)
 		bullet.global_position.y = enemyobj.global_position.y + 10
-		#dirtoplyr = self.global_position.direction_to(player.global_position)
+		enemyobj.dirtoplyr = enemyobj.global_position.direction_to(enemyobj.player.global_position)
 		bullet.set_speed(enemyobj.bulletspeed * enemyobj.dirtoplyr.x , enemyobj.bulletspeed * enemyobj.dirtoplyr.y)
 		print(Vector2(enemyobj.bulletspeed * enemyobj.dirtoplyr.x , enemyobj.bulletspeed * enemyobj.dirtoplyr.y))
 		print(enemyobj.dirtoplyr)

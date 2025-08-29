@@ -1,5 +1,5 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1756454895
+::res://::1756508521
 export_presets.cfg::TextFile/TextFile::-1::1752989861::0::1::::<><><>0<>0<><>::
 icon.svg::CompressedTexture2D/CompressedTexture2D::6990500554582533114::1750940775::1751082988::1::::<><><>0<>0<>0f1bbd9a7e8f0035e52e269da5587033<>res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex::
 ::res://Resources/::1756252520
@@ -10,17 +10,16 @@ TestDialogue.tres::Resource/DialogueList::3402317326667446783::1756454941::0::1:
 Test.tres::Resource/CharacterTalkingTemplate::2938204002221344300::1755235040::0::1::::<><><>0<>0<><>::uid://da0rah8ijqlow::::res://Scripts/ResourceBases/CharacterTalkingTemplate.gd
 ::res://Resources/Tilesets/::1756019121
 Intro_Tileset.tres::TileSet/TileSet::5707059692577620635::1756019121::0::1::::<><><>0<>0<><>::uid://c6uir1mqtm15g::::res://icon.svg<>uid://d013v8hreqafd::::res://Sprites/Tiles/Intro/Foreground/Intro_Floor.png<>uid://dcmbnb3kf5gpk::::res://Sprites/Tiles/Intro/Foreground/Abyss.png
-::res://Resources/VisualShaders/::1756490773
-DamageFlash.res::VisualShader::3607230611293477777::1756490773::0::1::::<><><>0<>0<><>::
-::res://Scenes/::1756490773
+::res://Resources/VisualShaders/::1756491024
+::res://Scenes/::1756491055
 DialogBox.gd::GDScript/GDScript::8247809500228007510::1755242030::0::1::::DialogBox<>Control<><>0<>0<><>::
-Dialoguetest.tscn::PackedScene::5770323530627915883::1756490773::0::1::::<><><>0<>0<><>::uid://dprkhnmusgahy::::res://Scenes/DialogBox.gd<>uid://boqdw0xuhkpnj::::res://Resources/Dialogue/TestDialogue.tres
+Dialoguetest.tscn::PackedScene::5770323530627915883::1756491055::0::1::::<><><>0<>0<><>::uid://dprkhnmusgahy::::res://Scenes/DialogBox.gd<>uid://boqdw0xuhkpnj::::res://Resources/Dialogue/TestDialogue.tres
 Player.tscn::PackedScene::5463641778050474067::1756454949::0::1::::<><><>0<>0<><>::uid://daophsysguk0e::::res://Scripts/Player.gd<>uid://ckvblg4h371ba::::res://Sprites/Entities/Player/PlayerPlaceholder.png
 ::res://Scenes/Entities/::1752363623
 FakePlayer.tscn::PackedScene/PackedScene::2472768255723321653::1751919461::0::1::::<><><>0<>0<><>::uid://c6uir1mqtm15g::::res://icon.svg<>uid://3gvuuhy0nnbn::::res://Scripts/Entities/fake_player.gd
-::res://Scenes/Entities/Enemies/::1756490773
-Ranger.tscn::PackedScene::6170832961252077177::1756490773::0::1::::<><><>0<>0<><>::uid://bakd46xycprpu::::res://Scripts/Entities/Enemies/Ranger.gd<>uid://dby2k4ccpqq2::::res://Sprites/Entities/Enemy/EnemyPlaceholder.png
-Wallcrawler.tscn::PackedScene::1390860810095161122::1756490773::0::1::::<><><>0<>0<><>::uid://b20lixvnm21un::::res://Scripts/Entities/Enemies/Wallcrawler.gd<>uid://c6uir1mqtm15g::::res://icon.svg<>uid://brnmtcxijycsv::::res://Resources/VisualShaders/DamageFlash.res<>uid://yss4o384w3rj::::res://Scripts/Statemachine stuff/StateManager.gd<>uid://0vmrq8n3y8gm::::res://Scripts/Entities/Enemies/Wallcrawler/WallcrawlerIdle.gd<>uid://dunvyewax17t7::::res://Scripts/Entities/Enemies/Wallcrawler/WallcrawlerWander.gd<>uid://csv4sy8cj8o8x::::res://Scripts/Entities/Enemies/Wallcrawler/WallcrawlerShoot.gd
+::res://Scenes/Entities/Enemies/::1756491055
+Ranger.tscn::PackedScene::6170832961252077177::1756491055::0::1::::<><><>0<>0<><>::uid://bakd46xycprpu::::res://Scripts/Entities/Enemies/Ranger.gd<>uid://dby2k4ccpqq2::::res://Sprites/Entities/Enemy/EnemyPlaceholder.png
+Wallcrawler.tscn::PackedScene::1390860810095161122::1756491055::0::1::::<><><>0<>0<><>::uid://b20lixvnm21un::::res://Scripts/Entities/Enemies/Wallcrawler.gd<>uid://c6uir1mqtm15g::::res://icon.svg<>uid://yss4o384w3rj::::res://Scripts/Statemachine stuff/StateManager.gd<>uid://0vmrq8n3y8gm::::res://Scripts/Entities/Enemies/Wallcrawler/WallcrawlerIdle.gd<>uid://dunvyewax17t7::::res://Scripts/Entities/Enemies/Wallcrawler/WallcrawlerWander.gd<>uid://csv4sy8cj8o8x::::res://Scripts/Entities/Enemies/Wallcrawler/WallcrawlerShoot.gd
 ::res://Scenes/Entities/Hazards/::1755995857
 SpikeTile.tscn::PackedScene/PackedScene::2933932720245939329::1751595470::0::1::::<><><>0<>0<><>::uid://nv5tsfc5vh3g::::res://Sprites/Tiles/Hazards/SpikeTile.png<>uid://4rxoq1hwctic::::res://Scripts/Hazards/spike_tile.gd
 UnstablePlatform.tscn::PackedScene/PackedScene::209209690949510346::1755995857::0::1::::<><><>0<>0<><>::uid://06q2ne2h4ai0::::res://Sprites/Tiles/Intro/Foreground/FloatingPlatform.png<>uid://dnuu0s078miup::::res://Scripts/Hazards/UnstablePlatform.gd
@@ -31,8 +30,8 @@ UnlockDash.tscn::PackedScene/PackedScene::1876964085880266614::1752540523::0::1:
 Bullet.tscn::PackedScene/PackedScene::3942629092922043288::1752540523::0::1::::<><><>0<>0<><>::uid://c6uir1mqtm15g::::res://icon.svg<>uid://mxu8kkv2p6hn::::res://Scripts/Entities/Bullets/BaseBullet.gd
 EnemyBullet.tscn::PackedScene/PackedScene::1026662082083385631::1755995857::0::1::::<><><>0<>0<><>::uid://cwitlbj3fnndh::::res://Scripts/Entities/Bullets/enemy_bullet.gd<>uid://c6uir1mqtm15g::::res://icon.svg
 PlayerBullet.tscn::PackedScene/PackedScene::3912827566554089112::1755995857::0::1::::<><><>0<>0<><>::uid://ty7w7oh1sx1i::::res://Scripts/Entities/Bullets/player_bullet.gd<>uid://c6uir1mqtm15g::::res://icon.svg
-::res://Scenes/Levels/::1756490773
-Intro.tscn::PackedScene::6836038499866343049::1756490773::0::1::::<><><>0<>0<><>::uid://c6uir1mqtm15g::::res://icon.svg<>uid://ct6gyng3jmsu0::::res://Scenes/Entities/Enemies/Ranger.tscn<>uid://bh2hpcnqjxc8p::::res://Scenes/Entities/Hazards/SpikeTile.tscn<>uid://c8lwg6ih7a2e::::res://Scenes/Entities/Hazards/UnstablePlatform.tscn<>uid://c3uom83unxs2q::::res://Scenes/Entities/Modules/UnlockBlaster.tscn<>uid://06q2ne2h4ai0::::res://Sprites/Tiles/Intro/Foreground/FloatingPlatform.png<>uid://cj3vm8nx1o1jj::::res://Scenes/Player.tscn<>uid://10hla38c1uxi::::res://Scenes/Entities/Modules/UnlockDash.tscn<>uid://t20jlepxhm0y::::res://Scenes/Entities/Enemies/Wallcrawler.tscn<>uid://d013v8hreqafd::::res://Sprites/Tiles/Intro/Foreground/Intro_Floor.png<>uid://dcmbnb3kf5gpk::::res://Sprites/Tiles/Intro/Foreground/Abyss.png<>uid://dnnsyrvpwf5mg::::res://Sprites/Tiles/Intro/Foreground/Void_Pipe.png<>uid://dhyud2g4aw0s0::::res://Sprites/Tiles/Intro/Foreground/Void_Pipe_No_Support.png<>uid://fe8d71lapvw1::::res://Sprites/Tiles/Intro/Foreground/Void_Pipe_Holder.png<>uid://dh510dreagaut::::res://Sprites/Tiles/Intro/Foreground/PipeEnd_R.png<>uid://hvjsdkrs7gay::::res://Sprites/Tiles/Intro/Foreground/Pipe_End_L.png
+::res://Scenes/Levels/::1756491203
+Intro.tscn::PackedScene::6836038499866343049::1756491203::0::1::::<><><>0<>0<><>::uid://c6uir1mqtm15g::::res://icon.svg<>uid://ct6gyng3jmsu0::::res://Scenes/Entities/Enemies/Ranger.tscn<>uid://bh2hpcnqjxc8p::::res://Scenes/Entities/Hazards/SpikeTile.tscn<>uid://c8lwg6ih7a2e::::res://Scenes/Entities/Hazards/UnstablePlatform.tscn<>uid://c3uom83unxs2q::::res://Scenes/Entities/Modules/UnlockBlaster.tscn<>uid://06q2ne2h4ai0::::res://Sprites/Tiles/Intro/Foreground/FloatingPlatform.png<>uid://cj3vm8nx1o1jj::::res://Scenes/Player.tscn<>uid://10hla38c1uxi::::res://Scenes/Entities/Modules/UnlockDash.tscn<>uid://t20jlepxhm0y::::res://Scenes/Entities/Enemies/Wallcrawler.tscn<>uid://d013v8hreqafd::::res://Sprites/Tiles/Intro/Foreground/Intro_Floor.png<>uid://dcmbnb3kf5gpk::::res://Sprites/Tiles/Intro/Foreground/Abyss.png<>uid://dnnsyrvpwf5mg::::res://Sprites/Tiles/Intro/Foreground/Void_Pipe.png<>uid://dhyud2g4aw0s0::::res://Sprites/Tiles/Intro/Foreground/Void_Pipe_No_Support.png<>uid://fe8d71lapvw1::::res://Sprites/Tiles/Intro/Foreground/Void_Pipe_Holder.png<>uid://dh510dreagaut::::res://Sprites/Tiles/Intro/Foreground/PipeEnd_R.png<>uid://hvjsdkrs7gay::::res://Sprites/Tiles/Intro/Foreground/Pipe_End_L.png
 TestArea.tscn::PackedScene/PackedScene::7107356197941038590::1756018991::0::1::::<><><>0<>0<><>::uid://cj3vm8nx1o1jj::::res://Scenes/Player.tscn<>uid://cnkso64hw8g48::::res://Resources/Tilesets/Intro_Tileset.tres<>uid://t20jlepxhm0y::::res://Scenes/Entities/Enemies/Wallcrawler.tscn
 ::res://Scripts/::1756456076
 Player.gd::GDScript::7189087578407233982::1756456076::0::1::::Player<>CharacterBody2D<><>0<>0<><>::
@@ -77,9 +76,10 @@ UnlockableModuleSprite.png::CompressedTexture2D/CompressedTexture2D::32843361185
 ::res://Sprites/Tiles/Hazards/::1751594738
 SpikeTile.png::CompressedTexture2D/CompressedTexture2D::957663293272983266::1751594730::1751594738::1::::<><><>0<>0<>26fdfbe168b705dedb1133dacd6c868f<>res://.godot/imported/SpikeTile.png-7857b0d3d4eaf3c016663d9baccf58ff.ctex::
 ::res://Sprites/Tiles/Intro/::1751599856
-::res://Sprites/Tiles/Intro/Foreground/::1756490762
-Abyss-export.png::CompressedTexture2D::26370650160876861::1756456754::1756456761::1::::<><><>0<>0<>2c96051f59b7d29899bb5e1469ddbaed<>res://.godot/imported/Abyss-export.png-2ff47881ea8fd71b1edb3d48abbe7d59.ctex::
+::res://Sprites/Tiles/Intro/Foreground/::1756508932
+Abyss-export.png::CompressedTexture2D/CompressedTexture2D::26370650160876861::1756456754::1756456761::1::::<><><>0<>0<>2c96051f59b7d29899bb5e1469ddbaed<>res://.godot/imported/Abyss-export.png-2ff47881ea8fd71b1edb3d48abbe7d59.ctex::
 Abyss.png::CompressedTexture2D/CompressedTexture2D::7324496299957711648::1756456750::1756456761::1::::<><><>0<>0<>9b0d8d18e832eed10f2d13418932f467<>res://.godot/imported/Abyss.png-abe2620dd9d7ae51b03e7915bdfb9a2f.ctex::
+Door.png::CompressedTexture2D::142661008857575778::1756508932::1756508935::1::::<><><>0<>0<>0bc76f201d4288cab9d71f0ab508e9fb<>res://.godot/imported/Door.png-92082c0f92094736ca23e69dc787bca7.ctex::
 FloatingPlatform.png::CompressedTexture2D/CompressedTexture2D::1819737179866378721::1751599874::1751599882::1::::<><><>0<>0<>5b4cccc52f0ed88da93632e2f88dc9b9<>res://.godot/imported/FloatingPlatform.png-679f034f1e523078286f5e27495b7950.ctex::
 Intro_Floor.png::CompressedTexture2D/CompressedTexture2D::8969396285967693005::1756457075::1756457134::1::::<><><>0<>0<>dbd5e95016ef5781853dc4d65673b3d6<>res://.godot/imported/Intro_Floor.png-766df48bda0c8d367087c35e72a7f1ab.ctex::
 PipeEnd_R.png::CompressedTexture2D/CompressedTexture2D::7714138759840577323::1756490369::1756490370::1::::<><><>0<>0<>040a56c3cc821ff3c5579b54965ba001<>res://.godot/imported/PipeEnd_R.png-f7c454e1ae9a15d4d06f037d6ffac8d3.ctex::

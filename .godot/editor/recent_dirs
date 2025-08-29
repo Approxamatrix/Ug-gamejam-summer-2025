@@ -1,4 +1,5 @@
-res://Resources/Animations/HitFlash
+res://Scenes/Levels
+res://Scenes/Entities/Doors/BaseDoor
 res://Resources/VisualShaders
 res://Sprites/Tiles/Intro/Foreground
 res://Resources/Tilesets
@@ -9,7 +10,6 @@ C:/Users/Anish/Documents/Game Exports/UG gamejam July 2025
 res://Scenes/Entities/Modules
 res://Scripts/Modules
 res://
-res://Scenes/Levels
 res://Scripts/Entities/Enemies
 res://Scenes/Entities/Enemies
 res://Scripts/Entities
