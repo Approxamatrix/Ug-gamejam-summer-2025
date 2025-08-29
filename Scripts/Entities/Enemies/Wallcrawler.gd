@@ -126,6 +126,7 @@ func change_attack_dir_timeout() -> void:
 
 func take_damage(damage : int):
 	
+	
 	#if !shieldactive:
 	health -= damage
 	#else:

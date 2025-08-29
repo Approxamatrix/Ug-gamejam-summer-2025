@@ -52,6 +52,7 @@ var shieldactive : bool
 
 @export var CamMaxDistanceFromPlayer : float
 
+
 func _ready() -> void:
 	
 	
@@ -408,6 +409,7 @@ func take_damage(damage : int):
 		clamp(health, 0, 10)
 		print("Ouch !!")
 		
+		
 		if state != PlayerState.Stun:
 			state = PlayerState.Stun
 			stuntimer.start()
@@ -460,7 +462,7 @@ func Cameramanager():
 		Camera.position.x =  PlyrSprite.position.x
 		
 		if is_on_floor():
-			Camera.position.y = lerp(Camera.position.y,PlyrSprite.position.y + CameraoffsetY ,0.25)
+			Camera.position.y = lerp(Camera.position.y,PlyrSprite.position.y + CameraoffsetY ,0.05)
 			
 		if !is_on_floor():
 			

@@ -46,6 +46,7 @@ var bulletscene = preload("res://Scenes/Entities/Projectiles/EnemyBullet.tscn")
 
 @export var walldist : int
 
+
 var facingdir = 1
 
 var wanderdir = 1
@@ -298,6 +299,7 @@ func direction_change_timeout() -> void:
 	
 	
 func take_damage(damage : int):
+	
 	
 	#if !shieldactive:
 	health -= damage

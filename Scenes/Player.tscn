@@ -6,13 +6,13 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gbyq6"]
 size = Vector2(62, 116)
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("healthbar", "jumptimer", "dashtimer", "shieldtimer", "stuntimer", "Camera", "PlyrSprite") groups=["Player"]]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("healthbar", "jumptimer", "dashtimer", "shieldtimer", "stuntimer", "Camera", "PlyrSprite", "DamageAnimPlayer") groups=["Player"]]
 physics_interpolation_mode = 1
 collision_layer = 2
 collision_mask = 3
 platform_on_leave = 1
 script = ExtResource("1_88kja")
-health = 15
+health = 20
 healthbar = NodePath("Camera2D/Control/CanvasLayer/MarginContainer/ProgressBar")
 gravity = 4.5
 basejumpheight = 210.0
@@ -27,6 +27,7 @@ Camera = NodePath("Camera2D")
 PlyrSprite = NodePath("Sprite2D")
 CameraoffsetY = 20
 CamMaxDistanceFromPlayer = 200.0
+DamageAnimPlayer = NodePath("")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, 1)
