@@ -1,8 +1,8 @@
+res://Scenes/Levels/Greenhouse.tscn
 res://Resources/Dialogue/TestDialogue.tres
-res://Scenes/Entities/Doors/BaseDoor/Door.tscn
-res://Scenes/Levels/Intro.tscn
 res://Scenes/Dialoguetest.tscn
 res://Scenes/Entities/Enemies/Wallcrawler.tscn
 res://Scenes/Entities/Enemies/Ranger.tscn
-res://Scripts/Entities/Enemies/Wallcrawler/WallcrawlerShoot.gd
+res://Scenes/Levels/Intro.tscn
+res://Scenes/Entities/Doors/BaseDoor/Door.tscn
 res://Scenes/Levels/CommandCenter.tscn
