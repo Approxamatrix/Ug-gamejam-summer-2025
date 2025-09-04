@@ -173,17 +173,38 @@ func startwandering():
 	
 	pass
 
+func dirtomovein() -> int:
+
+	if (leftray.is_colliding() and !rightray.is_colliding()) or (wallray.is_colliding() and wallray.target_position.x > 1) :
+		
+		return -1
+		
+		pass
+		
+	if (!leftray.is_colliding() and rightray.is_colliding()) or (wallray.is_colliding() and wallray.target_position.x < -1): 
+		
+		return 1
+		
+		pass
+	if !leftray.is_colliding() and !rightray.is_colliding():
+		return 0
+		
+	else:
+		return wanderdir
+	
+	pass
+
 func wander():
 	
 	## add a timer which has a cooldown on how when the wanderdir can change
 	
 	if dirchangecooldown.is_stopped():
-		#wanderdir = randi_range(-1,1)
+		print("dirchange")
+		wanderdir = randi_range(-1,1)
 		
 		if wanderdir == 0 and facingdir != 0:
 			wanderdir = facingdir
-		else:
-			wanderdir = 1
+	
 		
 		#
 		if wanderdir == facingdir:
@@ -192,36 +213,13 @@ func wander():
 		
 		dirchangecooldown.start()
 		
-	
 	if wallray.is_colliding() and wallray.get_collider(0).is_in_group("Enemy") :
 		
 		wanderdir *= -1
 		pass
 	
-	if (rightray.is_colliding() and !leftray.is_colliding() ) or (wallray.is_colliding() and wallray.target_position.x < -1 ):
-	 
-		if state != Enemystates.Die:
-			state = Enemystates.Idle
-		
-		wanderdir = 1
-		
-		
-
-	if ( leftray.is_colliding() and !rightray.is_colliding() ) or (wallray.is_colliding() and wallray.target_position.x > 1 ):
-
-		#velocity.x = 0
-		
-		if state != Enemystates.Die:
-			state = Enemystates.Idle
-		
-		wanderdir = -1
-
-	#if !leftray.is_colliding() and !rightray.is_colliding():
-#
-		#wanderdir = 0
-		#pass
-
 	
+	wanderdir = dirtomovein()
 	
 	detectorray.target_position.x = targetrange * facingdir
 	

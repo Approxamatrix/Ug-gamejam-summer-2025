@@ -1,8 +1,10 @@
-res://Scenes/Levels/Greenhouse.tscn
+res://Scenes/Levels/TestArea.tscn
 res://Resources/Dialogue/TestDialogue.tres
+res://Resources/Tilesets/Intro_Tileset.tres
+res://Scripts/Entities/Enemies/Ranger.gd
 res://Scenes/Dialoguetest.tscn
 res://Scenes/Entities/Enemies/Wallcrawler.tscn
 res://Scenes/Entities/Enemies/Ranger.tscn
-res://Scenes/Levels/Intro.tscn
 res://Scenes/Entities/Doors/BaseDoor/Door.tscn
 res://Scenes/Levels/CommandCenter.tscn
+res://Scenes/Levels/Greenhouse.tscn
