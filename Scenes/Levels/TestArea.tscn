@@ -8,7 +8,6 @@
 
 [node name="Player" parent="." instance=ExtResource("1_aok27")]
 position = Vector2(1174, 256)
-CameraoffsetY = -10
 CamMaxDistanceFromPlayer = 230.0
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
